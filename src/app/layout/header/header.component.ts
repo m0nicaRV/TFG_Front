@@ -9,5 +9,12 @@ import  {CommonModule} from '@angular/common';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  isMenuOpen = false;
+  isLoggedIn:boolean = false;
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+    console.log('menu is open', this.isMenuOpen);
+  }
 
 }
