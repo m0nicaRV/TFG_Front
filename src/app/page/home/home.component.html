@@ -25,23 +25,46 @@
 
   <!--OTRAS PAGINAS-->
 
-  <div [ngClass]="">
-    <div [ngClass]="['border-4 border-[#BDCBD3] rounded-full w-4/5 mx-auto']">
-      <div [ngClass]="['w-1/2 mx-auto']">
-        <h1 [ngClass]="['text-5xl py-4 border-b-4 ']" >SERVICIOS</h1>
-        <p [ngClass]="['text-xl py-4 w-11/12 mx-auto']">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in
-        </p>
+   <div [ngClass]="['flex flex-wrap justify-content w-11/12 mx-auto']">  
+      <div [ngClass]="[' w-[700px] h-[650px] p-6 border-4 border-[#BDCBD3] rounded-full mx-4 ']">
+        <div [ngClass]="['mx-auto w-11/12 text-center']">
+          <h1 [ngClass]="['text-5xl py-4 border-b-4 text-center']" >SERVICIOS</h1>
+          <p [ngClass]="['text-xl py-4  mx-auto']">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text ever
+            since the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book. It has survived not only
+            five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in
+          </p>
+        </div>
+        <div [ngClass]="['flex flex-row mx-auto ml-[-50px] ']">
+          <img src="assets/hombre_de_vitruvio.jpg" alt="osteo" [ngClass]="[' rounded-full w-3/5 ']" />
+          <button [ngClass]="['border-2 rounded-full h-fit p-3 content-center mx-auto mt-16 ']">Ver mas</button>
+        </div>
       </div>
-      <div [ngClass]="['flex flex-row justify-between w-3/5 mx-auto ab']">
-        <img src="assets/hombre_de_vitruvio.jpg" alt="osteo" [ngClass]="['w-3/5 rounded-full ']" />
-        <button [ngClass]="['border-2 rounded-full h-fit p-3']">Ver mas</button>
+
+ 
+    <div [ngClass]=" ['flex justify-end w-full']">
+        <div [ngClass]="['mt-[-400px]  w-[700px]  p-6 h-[650px]  border-4 border-[#BDCBD3] rounded-full mx-4  justify-end']">
+          <div [ngClass]="['mx-auto w-11/12 text-center ']">
+            <h1 [ngClass]="['text-5xl py-4 border-b-4 text-center']" >SERVICIOS</h1>
+            <p [ngClass]="['text-xl py-4  mx-auto']">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text ever
+              since the 1500s, when an unknown printer took a galley of type and
+              scrambled it to make a type specimen book. It has survived not only
+              five centuries, but also the leap into electronic typesetting,
+              remaining essentially unchanged. It was popularised in
+            </p>
+          </div>
+          <div [ngClass]="['flex flex-row justify-center items-end   bg-[#BDCBD3] rounded-full w-[400px] h-[400px] ']">
+            <img src="assets/hombre_de_vitruvio.jpg" alt="osteo" [ngClass]="['rounded-full w-3/5 h-3/5 ']" />
+            
+          </div>
+          <button [ngClass]="['border-2 rounded-full h-fit p-3 content-center my-auto ']">Ver mas</button>
+        </div>
       </div>
-    </div>
   </div>
+  
 </div>
