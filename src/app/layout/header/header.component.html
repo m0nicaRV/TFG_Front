@@ -4,14 +4,14 @@
         
     </div>
     <div >
-        <ul [ngClass]="['flex flex-row gap-8 justify-end text-2xl']">
+        <ul [ngClass]="['flex flex-row gap-8 justify-end lg:text-2xl text-lg ']">
             <li> <a href="/Servicios">Servicios</a></li>
             <li><a href="/">Conocenos</a></li>
             <li> <a href="#"> Noticias </a></li>
             <li *ngIf=" isLoggedIn else login"> <a href="#">Accede </a></li>
             <ng-template #login>
                 <li [ngClass]="['w-28']"></li>
-                <li [ngClass]="['absolute p-4 bg-[#BDCBD3] rounded-full top-0 right-4 z-10']" (click)="toggleMenu()"> <i class="fa-solid fa-user text-white text-7xl border-4 p-4 rounded-full border-white"></i> </li>
+                <li [ngClass]="['absolute p-4 bg-[#BDCBD3] rounded-full top-0 right-4 z-10']" (click)="toggleMenu()"> <i class="fa-solid fa-user text-white md:text-7xl text-3xl border-4 p-4 rounded-full border-white"></i> </li>
                 <ul *ngIf=" isMenuOpen " [ngClass]="['bg-[#BDCBD3] absolute  p-4 rounded-lg mt-16 right-0  z-0 w-2/12 pt-11']">
                     <li><a href="#">Mis citas</a></li>
                     <li><a href="#">Pedir cita</a></li>

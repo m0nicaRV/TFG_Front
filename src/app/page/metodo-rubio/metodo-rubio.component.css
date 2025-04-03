@@ -1,0 +1,42 @@
+.metodo-rubio {
+    @apply flex flex-col items-center justify-center w-full h-full bg-white;
+}
+
+
+.metodo-rubio h1{
+    @apply lg:text-5xl py-4 border-b-4  text-xl my-2 text-center w-1/2 mx-auto
+}
+.metodo-rubio p{
+    @apply text-lg w-full m-5
+}
+
+.metodo-rubio .left {
+    @apply  w-full p-4  gap-8 h-full flex justify-center pb-0;
+}
+.metodo-rubio .left .texto {
+    @apply w-3/5
+}
+
+.metodo-rubio .left img , .metodo-rubio .right img{
+    @apply  !m-0   rounded-full
+}
+
+.metodo-rubio .imagen {
+    @apply rounded-full  border-[15px]  py-12 border-[#BDCBD3] px-1 h-fit;
+}
+
+.metodo-rubio .right {
+    @apply  right-0      h-full flex  flex-row-reverse justify-center;
+}
+
+
+.metodo-rubio .circle{
+   @apply  bg-[#BDCBD3] rounded-full absolute 
+
+}
+.metodo-rubio  .uno{
+    @apply w-16 h-16  ml-[11%] mt-[-5%] z-0
+}
+.metodo-rubio .dos{
+    @apply w-24 h-24  ml-[10%] mt-[-13%] z-0
+}

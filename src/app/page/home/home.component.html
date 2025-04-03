@@ -1,11 +1,12 @@
-<div [ngClass]="['gap-10']">
+<div [ngClass]="['lg:gap-10 gap-0 flex flex-col']">
   <!--CORROUSEL-->
 
   <!--Ostiopatia-->
-  <div [ngClass]="['flex flex-row justify-end w-4/5 mx-auto my-9 ']">
-    <div [ngClass]="['text-center w-2/4 z-10 absolute left-24 mt-10 ']">
-      <h1 [ngClass]="['text-5xl py-4 border-b-4 ']">OSTEOPATIA</h1>
-      <p [ngClass]="['text-xl py-4 w-11/12 mx-auto']">
+  <div [ngClass]="['articulo right']">
+    
+    <div [ngClass]="['texto mt-10']">
+      <h1>OSTEOPATIA</h1>
+      <p>
         Es la ciencia que estudia los movimientos del cuerpo humano y la
         adaptación al medio. El Osteópata es pues un profesional del movimiento,
         su papel es descubrir en qué punto de la estructura no existe y con las
@@ -13,58 +14,66 @@
         adaptado y por tanto eficaz.
       </p>
     </div>
-    <div [ngClass]="['w-3/5 bg-[#BDCBD3] rounded-3xl ml-[-100px]  z-0  flex flex-col items-end']" >
-      <div [ngClass]="['w-3/5 mr-6']">
-        <img src="assets/Ostiopatia.gif" alt="osteo" [ngClass]="['p-3 rounded-3xl']" />
-        <div [ngClass]="['bg-white w-4/5 h-3 m-auto mb-2 rounded-full']"></div>
-        <div [ngClass]="['bg-white w-6/12 h-3 m-auto mb-2 rounded-full']"></div>
-        <div [ngClass]="['bg-white w-2/12 h-3 m-auto mb-2 rounded-full']"></div>
+    <div [ngClass]="['rectangulo']" >
+      <div [ngClass]="['imagen']">
+        <img src="assets/Ostiopatia.gif" alt="osteo"/>
+        <div [ngClass]="[' w-4/5 ']"></div>
+        <div [ngClass]="[' w-6/12 ']"></div>
+        <div [ngClass]="['w-2/12 ']"></div>
       </div>
     </div>
   </div>
 
   <!--OTRAS PAGINAS-->
 
-   <div [ngClass]="['flex flex-wrap justify-content w-11/12 mx-auto']">  
-      <div [ngClass]="[' w-[700px] h-[650px] p-6 border-4 border-[#BDCBD3] rounded-full mx-4 ']">
-        <div [ngClass]="['mx-auto w-11/12 text-center']">
-          <h1 [ngClass]="['text-5xl py-4 border-b-4 text-center']" >SERVICIOS</h1>
-          <p [ngClass]="['text-xl py-4  mx-auto']">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text ever
-            since the 1500s, when an unknown printer took a galley of type and
-            scrambled it to make a type specimen book. It has survived not only
-            five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in
-          </p>
-        </div>
-        <div [ngClass]="['flex flex-row mx-auto ml-[-50px] ']">
-          <img src="assets/hombre_de_vitruvio.jpg" alt="osteo" [ngClass]="[' rounded-full w-3/5 ']" />
-          <button [ngClass]="['border-2 rounded-full h-fit p-3 content-center mx-auto mt-16 ']">Ver mas</button>
-        </div>
+  <div [ngClass]="['articulo left']">
+    <div [ngClass]="['texto']">
+      <h1>SERVICIOS</h1>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text ever
+        since the 1500s, when an unknown printer took a galley of type and
+        scrambled it to make a type specimen book. It has survived not only
+        five centuries, but also the leap into electronic typesetting,
+        remaining essentially unchanged. It was popularised in
+      </p>
+      <a href="/servicios" target="_blank" [ngClass]="['button']"> + Info</a>
+    </div>
+    <div [ngClass]="['rectangulo']" >
+      <div [ngClass]="['imagen']">
+        <img src="assets/hombre_de_vitruvio.jpg" alt="osteo"/>
+        <div [ngClass]="[' w-4/5 ']"></div>
+        <div [ngClass]="[' w-6/12 ']"></div>
+        <div [ngClass]="['w-2/12 ']"></div>
       </div>
-
- 
-    <div [ngClass]=" ['flex justify-end w-full']">
-        <div [ngClass]="['mt-[-400px]  w-[700px]  p-6 h-[650px]  border-4 border-[#BDCBD3] rounded-full mx-4  justify-end']">
-          <div [ngClass]="['mx-auto w-11/12 text-center ']">
-            <h1 [ngClass]="['text-5xl py-4 border-b-4 text-center']" >SERVICIOS</h1>
-            <p [ngClass]="['text-xl py-4  mx-auto']">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text ever
-              since the 1500s, when an unknown printer took a galley of type and
-              scrambled it to make a type specimen book. It has survived not only
-              five centuries, but also the leap into electronic typesetting,
-              remaining essentially unchanged. It was popularised in
-            </p>
-          </div>
-          <div [ngClass]="['flex flex-row justify-center items-end   bg-[#BDCBD3] rounded-full w-[400px] h-[400px] ']">
-            <img src="assets/hombre_de_vitruvio.jpg" alt="osteo" [ngClass]="['rounded-full w-3/5 h-3/5 ']" />
-            
-          </div>
-          <button [ngClass]="['border-2 rounded-full h-fit p-3 content-center my-auto ']">Ver mas</button>
-        </div>
-      </div>
+    </div>
   </div>
+
+
+  <div [ngClass]="['articulo right']">
+    
+    <div [ngClass]="['texto']">
+      <h1>EL METODO RUBIO </h1>
+      <p>
+        Es la ciencia que estudia los movimientos del cuerpo humano y la
+        adaptación al medio. El Osteópata es pues un profesional del movimiento,
+        su papel es descubrir en qué punto de la estructura no existe y con las
+        técnicas apropiadas recupera el movimiento justo , equilibrado y bien
+        adaptado y por tanto eficaz.
+      </p>
+      <a href="/metodo-rubio" target="_blank" [ngClass]="['button']"> + Info</a>
+    </div>
+    <div [ngClass]="['rectangulo']" >
+      <div [ngClass]="['imagen']">
+        <img src="assets/metodo_rubio.jpg" alt="osteo"/>
+        <div [ngClass]="[' w-4/5 ']"></div>
+        <div [ngClass]="[' w-6/12 ']"></div>
+        <div [ngClass]="['w-2/12 ']"></div>
+      </div>
+    </div>
+  </div>
+
+
+
   
 </div>
