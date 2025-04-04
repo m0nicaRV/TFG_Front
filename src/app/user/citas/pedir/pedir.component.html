@@ -1,0 +1,19 @@
+<h1> Pedir cita </h1>
+
+<div [ngClass]="['bg-[#BDCBD3] flex flex-col justify-center w-4/5 rounded-3xl z-0  p-6 mx-auto gap-10 my-6 ']">
+
+    <div [ngClass]="['bg-white rounded-3xl  p-6 gap-4 flex flex-col ']">
+        <h2 [ngClass]="['text-2xl']">Pide tu cita</h2>
+        <p>Rellena el formulario y nos pondremos en contacto contigo para confirmar la cita.</p>
+    </div>
+    <p-floatlabel class="w-full md:w-56 " >
+        <p-select [(ngModel)]="servicio" inputId="servicio" [options]="items" optionLabel="name" name="servicio" styleClass="w-full"  />
+        <label for="servicio">Servicios</label>
+    </p-floatlabel>
+
+    <p-floatlabel>
+        <textarea pTextarea id="dolencia" [(ngModel)]="dolencia" rows="5" cols="30" style="resize: none"  [ngClass]="['h-full']" ></textarea>
+        <label for="dolencia">Dolencia </label>
+    </p-floatlabel>
+    <button pButton type="button" label="Submit" (click)="onSubmit()" Class="bg-[#BDCBD3]"><i class="pi pi-check"></i></button>
+</div>

@@ -1,20 +1,19 @@
 <header [ngClass]="['flex flex-row justify-between p-8 items-center bg-[#BDCBD3]']">
      <div>
-        <img src="assets/logo.jpeg" alt="logo" [ngClass]="['w-32 rounded-full']">
-        
+        <a href="/" ><img src="assets/logo.jpeg" alt="logo" [ngClass]="['w-32 rounded-full']"></a>
     </div>
     <div >
         <ul [ngClass]="['flex flex-row gap-8 justify-end lg:text-2xl text-lg ']">
-            <li> <a href="/Servicios">Servicios</a></li>
+            <li> <a href="/servicios">Servicios</a></li>
             <li><a href="/">Conocenos</a></li>
             <li> <a href="#"> Noticias </a></li>
             <li *ngIf=" isLoggedIn else login"> <a href="#">Accede </a></li>
             <ng-template #login>
                 <li [ngClass]="['w-28']"></li>
-                <li [ngClass]="['absolute p-4 bg-[#BDCBD3] rounded-full top-0 right-4 z-10']" (click)="toggleMenu()"> <i class="fa-solid fa-user text-white md:text-7xl text-3xl border-4 p-4 rounded-full border-white"></i> </li>
+                <li [ngClass]="['absolute p-4 bg-[#BDCBD3] rounded-full top-0 right-4 z-10']" (click)="toggleMenu()"> <i class="pi pi-user" style="font-size:80px;"[ngClass]="['text-white text-[2.5rem] border-4 p-4 rounded-full border-white']"></i> </li>
                 <ul *ngIf=" isMenuOpen " [ngClass]="['bg-[#BDCBD3] absolute  p-4 rounded-lg mt-16 right-0  z-0 w-2/12 pt-11']">
                     <li><a href="#">Mis citas</a></li>
-                    <li><a href="#">Pedir cita</a></li>
+                    <li><a href="/citas/pedir">Pedir cita</a></li>
                     <li><a href="#">Mis datos</a></li>
                     <li><a href="#">Cerrar sesion</a></li>
                 </ul>
