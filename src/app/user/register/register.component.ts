@@ -18,7 +18,9 @@ export class registerComponent implements OnInit {
   constructor( public router: Router, public fb:FormBuilder, public authService:AuthService) { 
     this.registerForm = this.fb.group({
       name: [''],
+      dni:[''],
       email: [''],
+      telefono: [''],
       password: [''],
       password_confirmation: ['']
     });
@@ -26,12 +28,15 @@ export class registerComponent implements OnInit {
 
   ngOnInit(){}
   onSubmit(){
+    console.log(this.registerForm.value);
+    
     this.authService.register(this.registerForm.value).subscribe(
       (result) => {
         console.log(result);
       },
       (error) => {
         this.errors = error.error;
+        console.log(this.errors);
       },
       () => {
         this.registerForm.reset();
