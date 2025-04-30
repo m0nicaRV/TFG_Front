@@ -1,0 +1,53 @@
+.articulo{
+    @apply flex lg:flex-row flex-col w-4/5 mx-auto my-9 
+}
+
+.left{
+    @apply justify-start
+}
+.left .texto{
+    @apply right-24
+}
+.left .rectangulo{
+    @apply items-start
+}
+
+.right{
+    @apply justify-end
+}
+.right .texto{
+    @apply  left-24
+}
+.right .rectangulo{
+    @apply items-end
+}
+
+
+.texto{
+    @apply text-center lg:w-2/4 z-10  lg:absolute
+}
+.texto h1{
+    @apply lg:text-5xl py-4 border-b-4  text-xl my-2
+}
+.texto p {
+    @apply md:text-lg lg:text-xl py-4 w-11/12 mx-auto text-base my-2
+}
+.texto .button{
+    @apply border-2 border-[#BDCBD3] text-black font-bold rounded-full my-2 px-4 py-2 hover:bg-[#BDCBD3] hover:text-white transition-all hover:font-extrabold duration-300
+}
+
+
+.rectangulo{
+    @apply lg:w-3/5 bg-[#BDCBD3] rounded-3xl w-full z-0  flex flex-col
+}
+.imagen{
+    @apply lg:w-3/5 lg:mx-6 p-3 w-full mx-0
+}
+.imagen img{
+    @apply p-3 rounded-3xl w-full items-center 
+}
+.imagen div{
+ @apply bg-white h-3 m-auto mb-2 rounded-full
+}
+
+

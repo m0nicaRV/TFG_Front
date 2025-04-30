@@ -1,0 +1,3 @@
+.botonForm{
+    @apply bg-[#BDCBD3]  rounded border flex flex-row gap-3 w-fit p-4;
+}

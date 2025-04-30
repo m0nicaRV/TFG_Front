@@ -1,0 +1,45 @@
+<h1> Pedir cita </h1>
+
+<div [ngClass]="['bg-[#BDCBD3] flex flex-col justify-center w-4/5 rounded-3xl z-0  p-6 mx-auto gap-10 my-6 ']">
+    <div [ngClass]="['bg-white rounded-3xl  p-6 gap-4 flex flex-col ']">
+        <h2 [ngClass]="['text-2xl']">Pide tu cita</h2>
+        <p>Rellena el formulario y nos pondremos en contacto contigo para confirmar la cita.</p>
+    </div> 
+    <form [formGroup]="forms" class="flex flex-row justify-between" >
+    <div class="flex flex-col gap-8">
+        <p-floatLabel class="w-full" >
+            <p-select formControlName="servicio" id="servicio" [options]="items" name="servicio" styleClass="w-full"  />
+            <label for="servicio">Servicios</label>
+        </p-floatLabel>
+
+        <p-floatLabel class="w-full" >
+            <textarea id="dolencia" formControlName="dolencia" rows="5" cols="30" name="dolencia"  ></textarea>
+            <label for="dolencia" style="   transform: none; top: var(--p-floatlabel-over-active-top); font-size:var(--p-floatlabel-active-font-size);">Dolencia </label>
+        </p-floatLabel>
+    </div>
+
+    <div class="flex flex-col gap-8 ">
+        @for(item of forms.value.times; track $index){
+
+            <div [formGroup]="$any(forms.get('times')).controls[$index]" class="flex flex-row gap-2 w-fit justify-end">
+                <p-floatLabel class="w-1/5  " >
+                    <p-datepicker inputId="inicio-{{$index}}"formControlName="inicio" [timeOnly]="true" styleClass="h-full"/>
+                    <label for="inicio">Hora inicio</label>
+                </p-floatLabel>
+                <p-floatLabel class="w-1/5" >
+                    <p-datepicker inputId="fin-{{$index}}"formControlName="fin" [timeOnly]="true" styleClass="h-full" />
+                    <label for="inicio">Hora fin</label>
+                </p-floatLabel>
+                <p-multiselect [options]="dias" formControlName="semana" placeholder="" [maxSelectedLabels]="5" styleClass="w-full md:w-80" />
+                 <button pButton type="button" label="Añadir" (click)="removeTime($index)" Class="botonForm"><i class="pi pi-minus"></i> <i class="pi pi-clock"></i></button>
+            </div>
+
+        }
+        <div class="flex flex-row gap-2 mx-auto">
+            <button pButton type="button" label="Añadir" (click)="addTime()" Class=" botonForm"><i class="pi pi-plus"></i><i class="pi pi-clock"></i> </button>
+           
+        </div>
+    </div>
+    </form> 
+    <button pButton type="button" label="Submit" (click)="onSubmit()" Class="bg-[#BDCBD3] gap-2">Enviar  <i class="pi pi-check"></i></button>
+</div>

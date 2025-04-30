@@ -1,0 +1,46 @@
+.auth-container {
+    @apply flex justify-center items-center min-h-screen bg-gray-100;
+  }
+  
+  .login-card {
+    @apply bg-white p-8 rounded-lg shadow-lg w-full max-w-sm;
+  }
+  
+  .login-heading {
+    @apply text-2xl font-semibold text-gray-800 mb-6 text-center;
+  }
+  
+  .form-error {
+    @apply bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4;
+    span {
+      @apply block sm:inline;
+    }
+  }
+  
+  .form-group {
+    @apply mb-4;
+  }
+  
+  .form-label {
+    @apply block text-gray-700 text-sm font-bold mb-2;
+  }
+  
+  .form-input {
+    @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none  focus:border-blue-500;
+  }
+  
+  .form-button {
+    @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none  w-full;
+  }
+  
+  .form-group:last-of-type {
+    @apply mb-6;
+  }
+  
+  .button-container {
+    @apply flex items-center justify-between;
+  }
+  
+  .auth-form-card { /* Nombre más genérico */
+    @apply bg-white p-8 rounded-lg shadow-lg w-full max-w-sm;
+  }

@@ -1,0 +1,23 @@
+<h1>SERVICIOS</h1>
+@for(servicio of servicios; track servicio.id){
+    <div class="card">
+        <img [src]="'http://127.0.0.1:8000/storage/' + servicio.foto" alt="Imagen de servicios"/>
+        <div class="card-body">
+            <h2>{{servicio.titulo}}</h2>
+            <p>{{servicio.descripcion}}</p>
+            <p class="time"><i class="pi pi-clock " style="font-size:30px;"></i> {{servicio.precio}} min</p>
+        </div>
+    </div>
+
+}
+
+
+<div [ngClass]="[' bg-[#BDCBD3] flex flex-row justify-center w-4/5 rounded-3xl z-0  p-6 mx-auto gap-10 my-6']" >
+    <img src="assets/servicios1.jpeg" alt="Imagen de servicios" [ngClass] = "['rounded-lg w-2/5']" />
+    <div [ngClass] = "['w-1/2 bg-white rounded-3xl  p-6 gap-4 flex flex-col ']">
+        <h2 [ngClass] = "['text-2xl']" >Servicio 1</h2>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been </p>
+       <p [ngClass]="['items-center flex gap-3']"><i class="pi pi-clock" style="font-size:30px;"></i>  30 min</p>
+    </div>
+</div>
+

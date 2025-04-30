@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap');
+@import "primeicons/primeicons.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    font-family: 'Jura', sans-serif;
+}
+
+h1{
+    @apply lg:text-5xl py-4 border-b-4  text-xl my-6 text-center w-fit mx-auto ;
+}
+
+

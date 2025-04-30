@@ -1,0 +1,37 @@
+<div>
+    <h1> MIS CITAS </h1>
+
+
+    @if (pendientes.length >= 1){
+    <div class="caja">
+        <div class="citas">
+            <h2>Pendientes</h2>
+            @for (cita of pendientes; track $index){
+                <p><i class="pi pi-clock mb-2"></i>{{cita.inicio}}-{{cita.fin}}  {{cita.fecha }} -> {{cita.servicio}} </p>
+            }
+        </div>
+    </div>
+    }
+
+    @if (aceptadas.length >= 1){
+        <div class="caja">
+            <div class="citas">
+                <h2>Aceptadas</h2>
+                @for (cita of aceptadas; track $index){
+                    <p><i class="pi pi-clock"></i>{{cita.inicio}}-{{cita.fin}}  {{cita.fecha }} -> {{cita.servicio}} </p>
+                }
+            </div>
+        </div>
+    }
+
+    @if (anteriores.length >= 1){
+        <div class="caja">
+            <div class="citas">
+                <h2>Anteriores citas</h2>
+                @for (cita of anteriores; track $index){
+                    <p><i class="pi pi-clock mb-[-6px]"></i>{{cita.inicio}}-{{cita.fin}}  {{cita.fecha }} -> {{cita.servicio}} </p>
+                }
+            </div>
+        </div>
+    }
+</div>

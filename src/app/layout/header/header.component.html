@@ -1,0 +1,46 @@
+<header [ngClass]="['flex flex-row justify-between p-8 items-center bg-[#BDCBD3]']">
+     <div>
+        <a href="/" ><img src="assets/logo.jpeg" alt="logo" [ngClass]="['w-32 rounded-full']"></a>
+    </div>
+    <div >
+        <ul [ngClass]="['flex flex-row gap-8 justify-end lg:text-2xl text-lg z-50 ']">
+            <li> <a href="/servicios">Servicios</a></li>
+            <li><a href="/">Conocenos</a></li>
+            <li> <a href="#"> Noticias </a></li>
+            @if (!isLoggedIn){
+                <li><a href="register">registrate </a></li>
+                <li><a href="login">Accede </a></li>
+            }@else {
+                <li [ngClass]="['w-28']"></li>
+                <li [ngClass]="['absolute p-4 bg-[#BDCBD3] rounded-full top-0 right-4 z-10']" (click)="toggleMenu()"> <i class="pi pi-user" style="font-size:80px;"[ngClass]="['text-white text-[2.5rem] border-4 p-4 rounded-full border-white']"></i> </li>
+                @if (isMenuOpen){               
+                    <ul [ngClass]="['bg-[#BDCBD3] absolute  p-4 rounded-lg mt-16 right-0  z-0 w-2/12 pt-11']">
+                        @if (isAdmin){
+                            <li><a href="/admin/calendar">Calendario</a></li>
+                        }@else{                        
+                            <li><a href="/citas">Mis citas</a></li>
+                            <li><a href="/citas/pedir">Pedir cita</a></li>
+                            <li><a href="#">Mis datos</a></li>  
+                            <li><a href="#">Configuracion</a></li>
+                            <li><a href="servicios/create">Crear</a></li>
+                        }
+                        <li> 
+                            <button type="button" (click)="signOut()" class="dropdown-item link-danger border-0 bg-transparent">
+                                Cerrar sesion
+                            </button>
+                        </li>
+                    </ul>
+                }
+            }
+        </ul>
+    </div>
+</header>
+
+@if (isLoading){
+    <div class="d-flex justify-content-center mt-5">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+    </div>
+}
+
