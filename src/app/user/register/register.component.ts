@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../shared/auth.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { dniValidator } from '../../validators/dni';
+import { passwordMatchValidator } from '../../validators/password';
+
+
+
 
 @Component({
   selector: 'app-register',
@@ -17,13 +22,15 @@ export class registerComponent implements OnInit {
 
   constructor( public router: Router, public fb:FormBuilder, public authService:AuthService) { 
     this.registerForm = this.fb.group({
-      name: [''],
-      dni:[''],
-      email: [''],
-      telefono: [''],
-      password: [''],
-      password_confirmation: ['']
-    });
+      name: new FormControl('',[Validators.required]),
+      dni: new FormControl('', [Validators.required, dniValidator()]),
+      email: new FormControl('',[Validators.required, Validators.email]),
+      telefono: new FormControl('',[Validators.required]),
+      password: new FormControl('',[Validators.required, Validators.minLength(6)]),
+      password_confirmation: new FormControl('',[Validators.required, Validators.minLength(6)]),
+    },{
+    validators: passwordMatchValidator()
+  });
   }
 
   ngOnInit(){}
@@ -32,11 +39,11 @@ export class registerComponent implements OnInit {
     
     this.authService.register(this.registerForm.value).subscribe(
       (result) => {
-        console.log(result);
+        console.log("result:", result);
       },
       (error) => {
         this.errors = error.error;
-        console.log(this.errors);
+        console.log("error:", this.errors);
       },
       () => {
         this.registerForm.reset();

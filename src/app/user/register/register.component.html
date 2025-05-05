@@ -4,20 +4,15 @@
 >
   <h3 class="login-heading"> Register User
   </h3>
+ 
+  @for (fieldEntry of errors | keyvalue; track  fieldEntry.key) {
+      <li>{{ fieldEntry.key }}: {{ fieldEntry.value }}</li>
+    @if (typeof fieldEntry.value === 'string') {
+       <li>{{ fieldEntry.key }}: {{ fieldEntry.value }}</li>
+    }
+  }
 
-  <div *ngIf="errors?.name" class="form-error" role="alert">
-    <span>{{ errors?.name }}</span>
-  </div>
-  <div *ngIf="errors?.email" class="form-error" role="alert">
-    <span>{{ errors?.email }}</span>
-  </div>
-  <div *ngIf="errors?.password" class="form-error" role="alert">
-    <span>{{ errors?.password }}</span>
-  </div>
-  <div *ngIf="errors?.password_confirmation" class="form-error" role="alert">
-    <span>{{ errors?.password_confirmation }}</span>
-  </div>
-
+  
   <div class="form-group"> 
     <label class="form-label" for="name"> Name </label>
     <input type="text" id="name" class="form-input" [formControlName]="'name'"/>
