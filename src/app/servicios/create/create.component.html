@@ -11,16 +11,16 @@
                  class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
       </div>
 
-      <div class="flex flex-col gap-2"> <label for="precio" class="block text-gray-700 font-bold">Precio:</label>
-          <input type="number" id="precio" formControlName="precio"
+      <div class="flex flex-col gap-2"> <label for="tiempo" class="block text-gray-700 font-bold">tiempo:</label>
+          <input type="number" id="tiempo" formControlName="tiempo"
                  class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                 [ngClass]="{'border-red-500': servicioForm.get('precio')?.invalid && (servicioForm.get('precio')?.dirty || servicioForm.get('precio')?.touched)}">
-          <div *ngIf="servicioForm.get('precio')?.invalid && (servicioForm.get('precio')?.dirty || servicioForm.get('precio')?.touched)" class="text-red-500 text-sm">
-              <div *ngIf="servicioForm.get('precio')?.errors?.['required']">
-                  El precio es obligatorio.
+                 [ngClass]="{'border-red-500': servicioForm.get('tiempo')?.invalid && (servicioForm.get('tiempo')?.dirty || servicioForm.get('tiempo')?.touched)}">
+          <div *ngIf="servicioForm.get('tiempo')?.invalid && (servicioForm.get('tiempo')?.dirty || servicioForm.get('tiempo')?.touched)" class="text-red-500 text-sm">
+              <div *ngIf="servicioForm.get('tiempo')?.errors?.['required']">
+                  El tiempo es obligatorio.
               </div>
-              <div *ngIf="servicioForm.get('precio')?.errors?.['numeric']">
-                  El precio debe ser un número.
+              <div *ngIf="servicioForm.get('tiempo')?.errors?.['numeric']">
+                  El tiempo debe ser un número.
               </div>
           </div>
       </div>

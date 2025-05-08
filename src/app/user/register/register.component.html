@@ -6,10 +6,18 @@
   </h3>
  
   @for (fieldEntry of errors | keyvalue; track  fieldEntry.key) {
-      <li>{{ fieldEntry.key }}: {{ fieldEntry.value }}</li>
+    <div class="error" role="alert">
+      <span>{{ fieldEntry.key }} : {{ fieldEntry.value }}</span>">
     @if (typeof fieldEntry.value === 'string') {
        <li>{{ fieldEntry.key }}: {{ fieldEntry.value }}</li>
     }
+    </div>
+  }
+
+  @if (registerForm.get('email')?.errors) {
+    <div class="error" role="alert">
+      <span>{{ registerForm.get('email')?.errors?.['required'] }}</span>
+    </div>
   }
 
   

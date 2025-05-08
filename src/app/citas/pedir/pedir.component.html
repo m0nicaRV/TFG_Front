@@ -8,7 +8,7 @@
     <form [formGroup]="forms" class="flex flex-row justify-between" >
     <div class="flex flex-col gap-8">
         <p-floatLabel class="w-full" >
-            <p-select formControlName="servicio" id="servicio" [options]="items" name="servicio" styleClass="w-full"  />
+            <p-select formControlName="servicio" id="servicio" [options]="servicios" optionLabel="titulo" optionValue="id" name="servicio" styleClass="w-full"  />
             <label for="servicio">Servicios</label>
         </p-floatLabel>
 
@@ -18,10 +18,11 @@
         </p-floatLabel>
     </div>
 
-    <div class="flex flex-col gap-8 ">
-        @for(item of forms.value.times; track $index){
+    <div class="flex flex-col gap-8 "  >
+   
+        @for(item of forms.value.disponibilidad; track $index){
 
-            <div [formGroup]="$any(forms.get('times')).controls[$index]" class="flex flex-row gap-2 w-fit justify-end">
+            <div [formGroup]="$any(forms.get('disponibilidad')).controls[$index]" class="flex flex-row gap-2 w-fit justify-end">
                 <p-floatLabel class="w-1/5  " >
                     <p-datepicker inputId="inicio-{{$index}}"formControlName="inicio" [timeOnly]="true" styleClass="h-full"/>
                     <label for="inicio">Hora inicio</label>
@@ -38,8 +39,10 @@
         <div class="flex flex-row gap-2 mx-auto">
             <button pButton type="button" label="Añadir" (click)="addTime()" Class=" botonForm"><i class="pi pi-plus"></i><i class="pi pi-clock"></i> </button>
            
-        </div>
+        </div>   
+        
     </div>
+ 
     </form> 
     <button pButton type="button" label="Submit" (click)="onSubmit()" Class="bg-[#BDCBD3] gap-2">Enviar  <i class="pi pi-check"></i></button>
 </div>

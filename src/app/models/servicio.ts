@@ -1,7 +1,7 @@
 export interface Servicio {
     id: number;
-    titulo: string | null;
-    precio: number;
+    titulo: string;
+    tiempo: number;
     descripcion: string;
     foto: string | null;
 }

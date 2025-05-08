@@ -29,7 +29,7 @@ export class CreateComponent {
   ngOnInit(): void {
     this.servicioForm = new FormGroup({
           titulo:new FormControl('', [Validators.required]),
-          precio:new FormControl('',[Validators.required]) ,
+          tiempo:new FormControl('',[Validators.required]) ,
           descripcion:new FormControl('',[Validators.required]) , 
           foto: new FormControl('',[Validators.required])  
         });
@@ -54,7 +54,7 @@ export class CreateComponent {
 
       const Servicio: FormData = new FormData();
       Servicio.append('titulo', this.servicioForm.get('titulo')?.value);
-      Servicio.append('precio', this.servicioForm.get('precio')?.value);
+      Servicio.append('tiempo', this.servicioForm.get('tiempo')?.value);
       Servicio.append('descripcion', this.servicioForm.get('descripcion')?.value);
       Servicio.append('foto', this.selectedImage);
       console.log('Servicio:', Servicio);

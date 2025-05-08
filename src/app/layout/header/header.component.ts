@@ -5,13 +5,14 @@ import { TokenService } from '../../shared/token.service';
 import { AuthStateService } from '../../shared/auth-state.service';
 import { AuthService } from '../../shared/auth.service';
 import { User } from '../../models/user';
+import { RouterModule } from '@angular/router';
 
 
 
 @Component({
   standalone: true,
   selector: 'app-header',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
