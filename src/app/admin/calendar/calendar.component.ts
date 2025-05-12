@@ -66,6 +66,11 @@ export class CalendarComponent {
     }
   }
 
+  public signOut(){
+    this.googleCalendarService.resetAuthToken();
+    this.route.navigate(['/']);
+  }
+
    
 
   

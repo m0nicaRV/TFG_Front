@@ -29,7 +29,7 @@ export class CalendarService {
   }
 
     public resetAuthToken(): void {
-    localStorage.removeItem(AUTH_TOKEN_DEFINITION);
+    localStorage.removeItem('auth_token_api_google_calendar');
     this.authTokenSub$.next(null);
   }
 
