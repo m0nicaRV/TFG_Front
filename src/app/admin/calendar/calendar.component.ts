@@ -4,6 +4,7 @@ import {Cita} from '../../models/cita';
 import { CalendarService } from '../calendar.service';
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,9 +16,10 @@ import { CommonModule } from '@angular/common';
 })
 export class CalendarComponent {
   citas: Cita[] = [];
+  googleApi: any;
   
 
-  constructor(private citaService: CitaService, private googleCalendarService: CalendarService) { }
+  constructor(private route:Router,private citaService: CitaService, private googleCalendarService: CalendarService) { }
 
     ngOnInit() {
       this.citaService.index().subscribe(
@@ -30,7 +32,43 @@ export class CalendarComponent {
           console.error('Error fetching citas:', error);
         }
       );
+
+
+    if (this.googleCalendarService.getAuthToken()) {
+        console.log('Token:', this.googleCalendarService.getAuthToken());
+      } else {
+        console.log('Initializing Google Token Client...'); // Añade esto
+        this.googleApi = google.accounts.oauth2.initTokenClient({
+          client_id: '901640707227-rkhpj544mg15h2avo64mf0juk4n510ut.apps.googleusercontent.com',
+          scope: 'https://www.googleapis.com/auth/calendar',
+          callback: (response: any) => {
+            console.log('Response:', response);
+            this.googleCalendarService.setAuthToken(response.access_token);
+            this.handleAuthResult(response);
+          }
+        });
+
+        this.googleApi.requestAccessToken();
+      }     
+    
   }
+
+
+
+  private handleAuthResult(response: any) {
+    console.log('Auth Response:', response);
+    if (response && response.access_token) {
+      console.log('Access Token:', response.access_token);
+      alert('Authentication successful! Check the console for the access token.');
+    } else {
+      console.error('Authentication failed:', response.error);
+      alert('Authentication failed. Check the console for errors.');
+    }
+  }
+
+   
+
+  
 
   
 }
