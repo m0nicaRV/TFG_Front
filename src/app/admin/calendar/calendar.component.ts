@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 export class CalendarComponent {
   citas: Cita[] = [];
   googleApi: any;
+  events: any[] = [];
   
 
   constructor(private route:Router,private citaService: CitaService, private googleCalendarService: CalendarService) { }
@@ -59,16 +60,29 @@ export class CalendarComponent {
     console.log('Auth Response:', response);
     if (response && response.access_token) {
       console.log('Access Token:', response.access_token);
-      alert('Authentication successful! Check the console for the access token.');
     } else {
       console.error('Authentication failed:', response.error);
-      alert('Authentication failed. Check the console for errors.');
     }
   }
 
   public signOut(){
     this.googleCalendarService.resetAuthToken();
     this.route.navigate(['/']);
+  }
+
+  public getEvents() {
+    this.googleCalendarService.events().subscribe(
+      (data: any) => {
+        console.log('Events:', data);
+        this.events = data.items;
+
+        
+      },
+      (error) => {
+        console.error('Error fetching events:', error);
+        
+      }
+    );
   }
 
    

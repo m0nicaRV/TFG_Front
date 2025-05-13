@@ -2,6 +2,7 @@ import { ApplicationConfig, provideZoneChangeDetection, LOCALE_ID } from '@angul
 import { provideRouter } from '@angular/router';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { CommonModule, registerLocaleData } from '@angular/common';
+import { CalendarInterceptor } from './admin/calendar.interceptor';
 
 import localeEs from '@angular/common/locales/es';
 
@@ -24,6 +25,11 @@ export const appConfig: ApplicationConfig = {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CalendarInterceptor,
+      multi: true,
     },
     provideHttpClient(withInterceptorsFromDi()),
     provideZoneChangeDetection({ eventCoalescing: true }),

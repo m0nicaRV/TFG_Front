@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user'; // Adjust the import path as necessary
+import { HttpContextToken } from '@angular/common/http';
+
+
 
 
 
@@ -17,6 +20,7 @@ export class AuthService {
   }
 
   login(user: User): Observable<any> {
+   
     return this.http.post<any>('http://127.0.0.1:8000/api/login', user);
   }
 

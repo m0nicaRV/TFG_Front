@@ -1,3 +1,6 @@
+import { HttpContextToken } from '@angular/common/http';
+
+export const IGNORE_AUTH_INTERCEPTOR = new HttpContextToken<boolean>(() => false);
 export const environment = {
   production: false,
   googleCalendar: {
