@@ -63,7 +63,7 @@ export class CalendarComponent {
   }
 
   public getEvents() {
-    this.googleCalendarService.events().subscribe(
+    /*this.googleCalendarService.events().subscribe(
       (data: any) => {
         console.log('Events:', data);
         this.events = data.items;
@@ -74,7 +74,7 @@ export class CalendarComponent {
         console.error('Error fetching events:', error);
         
       }
-    );
+    );*/
   }
 
   onSubmit() {

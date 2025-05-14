@@ -7,6 +7,7 @@ import  {CalendarService} from '../calendar.service';
 import { DatePickerModule } from 'primeng/datepicker';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { calendar } from '../../environments/environments';
 
 @Component({
   selector: 'app-semana',
@@ -16,7 +17,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class SemanaComponent {
   weekNumber!: Date;
-  diasSemana!: Date[];
+  diasSemana:  { key: number; fecha: Date; events: any[] }[] = [];
   month!: string;
   rangeDates: Date[] = [];
 
@@ -28,6 +29,7 @@ export class SemanaComponent {
     console.log('Selected date:', this.rangeDates);    
     this.rangeDates [0]= (startOfISOWeek(this.rangeDates[0]));
     this.rangeDates [1]= (endOfISOWeek(this.rangeDates[0]));
+    calendar.day=this.rangeDates[0];
     this.semana(this.rangeDates[0]);
     }
 
@@ -41,15 +43,15 @@ export class SemanaComponent {
 
     dia.setDate(dia.getDate() + suma);
     this.semana(dia);
-    this.rangeDates[0] = this.diasSemana[0];
-    this.rangeDates[1] = this.diasSemana[6];
+    this.rangeDates[0] = this.diasSemana[0].fecha;
+    this.rangeDates[1] = this.diasSemana[6].fecha;
     console.log('Selected date:', this.rangeDates);
 
   }
 
 
   ngOnInit() {
-    this.rangeDates[0] = new Date();
+    this.rangeDates[0] = calendar.day;
     this.dataPick();
   }
 

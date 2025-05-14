@@ -1,7 +1,7 @@
 <h1>SERVICIOS</h1>
 @for(servicio of servicios; track servicio.id){
     <div class="card">
-        <img [src]="'http://127.0.0.1:8000/storage/' + servicio.foto" alt="Imagen de servicios"/>
+        <img [src]="environment.url_host+'storage/' + servicio.foto" alt="Imagen de servicios"/>
         <div class="card-body">
             <h2>{{servicio.titulo}}</h2>
             <p>{{servicio.descripcion}}</p>

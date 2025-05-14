@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ServicioService } from '../servicio.service';
 import {Servicio} from '../../models/servicio';
+import { environment } from '../../environments/environments';
 
 @Component({
   selector: 'app-index',
@@ -11,6 +12,7 @@ import {Servicio} from '../../models/servicio';
 })
 export class IndexComponent {
   servicios: Servicio[] = [];
+  public environment = environment;
   
 
   constructor(private servicioService: ServicioService) { }

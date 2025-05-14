@@ -65,10 +65,10 @@ export class CalendarService {
     this.authTokenSub$.next(null);
   }
 
-  public events(){
+  public events(timeMin:Date, timeMax:Date){
     const params = new HttpParams()
-    .set('timeMin', '2023-10-01T00:00:00Z')
-    .set('timeMax', '2026-10-31T23:59:59Z')
+    .set('timeMin', timeMin.toISOString())
+    .set('timeMax', timeMax.toISOString())
     .set('singleEvents', 'true')
     .set('orderBy', 'startTime')
     .set('timezone', 'UTC');
@@ -78,14 +78,13 @@ export class CalendarService {
   }
 
   calcularSemana(dia: Date) {
-    const semana: Date[] = []
+    const semana: { key: number; fecha: Date; events: any[] }[] = [];
     for (let i = 0; i < 7; i++) {
-      const fecha = new Date(dia);
-      fecha.setDate(dia.getDate() + i);
-      semana.push(fecha );
+      const fecha = { key: dia.getDay(), fecha: new Date(dia), events: [] };
+      fecha.fecha.setDate(dia.getDate() + i);
+      semana.push(fecha);
     }
     return semana;
-
   }
 
 
