@@ -6,6 +6,7 @@ import { Router } from "@angular/router";
 import { HttpContextToken } from '@angular/common/http';
 import { IGNORE_AUTH_INTERCEPTOR } from "../environments/environments";
 
+
 @Injectable()
 
 export class CalendarInterceptor implements HttpInterceptor {

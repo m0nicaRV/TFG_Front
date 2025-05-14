@@ -1,9 +1,8 @@
 
 import { Injectable} from '@angular/core';
-import { environment } from '../environments/environments'; 
 import { HttpClient, HttpParams, HttpContext } from '@angular/common/http';
 import { HttpContextToken } from '@angular/common/http';
-import { IGNORE_AUTH_INTERCEPTOR } from '../environments/environments';
+import { IGNORE_AUTH_INTERCEPTOR, environment } from '../environments/environments';
 
 
 import { BehaviorSubject } from 'rxjs';
@@ -14,6 +13,7 @@ export const AUTH_TOKEN_DEFINITION = 'auth_token_api_google_calendar';
   providedIn: 'root'
 })
 export class CalendarService {
+  googleApi:any;
    
   private authTokenSub$ = new BehaviorSubject<string | null>(null);
   public authTokenChanges$ = this.authTokenSub$.asObservable();
@@ -23,6 +23,32 @@ export class CalendarService {
   constructor( private http: HttpClient) {
     this.authTokenSub$.next(localStorage.getItem(AUTH_TOKEN_DEFINITION));
    }
+
+   public init(): void {
+    if(this.getAuthToken()){
+      console.log('Token:', this.getAuthToken());
+    }else{
+      this.googleApi = google.accounts.oauth2.initTokenClient({
+        client_id: environment.googleCalendar.CLIENT_ID,
+        scope: environment.googleCalendar.SCOPES,
+        callback: (response: any) => {
+          this.setAuthToken(response.access_token);
+          this.handleAuthResult(response);
+        }
+      });
+      this.googleApi.requestAccessToken();
+   }
+
+  }
+
+  public handleAuthResult(response: any) {
+    console.log('Auth Response:', response);
+    if (response && response.access_token) {
+      console.log('Access Token:', response.access_token);
+    } else {
+      console.error('Authentication failed:', response.error);
+    }
+  }
 
   
   public getAuthToken(): string | null {
@@ -49,6 +75,17 @@ export class CalendarService {
     const context = new HttpContext().set(IGNORE_AUTH_INTERCEPTOR,true );
     console.log('Token:', this.getAuthToken());
     return this.http.get<any>('https://www.googleapis.com/calendar/v3/calendars/primary/events', { params, context });
+  }
+
+  calcularSemana(dia: Date) {
+    const semana: Date[] = []
+    for (let i = 0; i < 7; i++) {
+      const fecha = new Date(dia);
+      fecha.setDate(dia.getDate() + i);
+      semana.push(fecha );
+    }
+    return semana;
+
   }
 
 

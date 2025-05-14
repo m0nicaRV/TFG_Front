@@ -1,26 +1,47 @@
 import { Component, OnInit , OnDestroy} from '@angular/core';
+import { SimpleChanges } from '@angular/core';
 import { CitaService } from '../../citas/cita.service';
 import {Cita} from '../../models/cita';
 import { CalendarService } from '../calendar.service';
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { FloatLabel } from 'primeng/floatlabel';
+import { DatePickerModule } from 'primeng/datepicker';
+import { FormsModule } from '@angular/forms';
+import { SemanaComponent } from '../semana/semana.component';
+import {SelectButton} from 'primeng/selectbutton';
+import { MesComponent } from '../mes/mes.component';
+import { endOfISOWeek, startOfISOWeek } from 'date-fns';
+
 
 
 @Component({
   selector: 'app-calendar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [MesComponent ,SelectButton,CommonModule, DatePickerModule, FloatLabel, FormsModule, SemanaComponent],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.css'
 })
 export class CalendarComponent {
+  today: Date ;
   citas: Cita[] = [];
-  googleApi: any;
   events: any[] = [];
-  
+  options: string[] = ['Semana', 'Mes'];
+  value: string = this.options[0];
+  rangeDates: Date[] = [];
 
-  constructor(private route:Router,private citaService: CitaService, private googleCalendarService: CalendarService) { }
+  constructor(private route:Router,private citaService: CitaService, private googleCalendarService: CalendarService) { 
+      this.today = new Date();
+  }
+
+
+  dataPick(){
+    console.log('Selected date:', this.rangeDates);
+      this.rangeDates [0]= (startOfISOWeek(this.rangeDates[0]));
+      this.rangeDates [1]= (endOfISOWeek(this.rangeDates[0]));
+  }
+
 
     ngOnInit() {
       this.citaService.index().subscribe(
@@ -33,37 +54,8 @@ export class CalendarComponent {
           console.error('Error fetching citas:', error);
         }
       );
-
-
-    if (this.googleCalendarService.getAuthToken()) {
-        console.log('Token:', this.googleCalendarService.getAuthToken());
-      } else {
-        console.log('Initializing Google Token Client...'); // Añade esto
-        this.googleApi = google.accounts.oauth2.initTokenClient({
-          client_id: '901640707227-rkhpj544mg15h2avo64mf0juk4n510ut.apps.googleusercontent.com',
-          scope: 'https://www.googleapis.com/auth/calendar',
-          callback: (response: any) => {
-            console.log('Response:', response);
-            this.googleCalendarService.setAuthToken(response.access_token);
-            this.handleAuthResult(response);
-          }
-        });
-
-        this.googleApi.requestAccessToken();
-      }     
-    
-  }
-
-
-
-  private handleAuthResult(response: any) {
-    console.log('Auth Response:', response);
-    if (response && response.access_token) {
-      console.log('Access Token:', response.access_token);
-    } else {
-      console.error('Authentication failed:', response.error);
+      this.googleCalendarService.init();
     }
-  }
 
   public signOut(){
     this.googleCalendarService.resetAuthToken();
@@ -83,6 +75,10 @@ export class CalendarComponent {
         
       }
     );
+  }
+
+  onSubmit() {
+  
   }
 
    
