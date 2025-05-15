@@ -80,8 +80,8 @@ export class CalendarService {
   calcularSemana(dia: Date) {
     const semana: { key: number; fecha: Date; events: any[] }[] = [];
     for (let i = 0; i < 7; i++) {
-      const fecha = { key: dia.getDay(), fecha: new Date(dia), events: [] };
-      fecha.fecha.setDate(dia.getDate() + i);
+      const fecha = { key: dia.getDate(), fecha: new Date(dia), events: [] };
+      dia.setDate(dia.getDate() + 1);
       semana.push(fecha);
     }
     return semana;

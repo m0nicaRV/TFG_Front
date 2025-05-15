@@ -6,7 +6,6 @@ import { Router } from "@angular/router";
 import { HttpContextToken } from '@angular/common/http';
 import { IGNORE_AUTH_INTERCEPTOR } from "../environments/environments";
 
-
 @Injectable()
 
 export class CalendarInterceptor implements HttpInterceptor {
@@ -20,13 +19,14 @@ constructor(private authService: CalendarService, private router: Router) {}
         catchError((err: HttpErrorResponse) => {
           if (err.status === 401) {
             this.authService.resetAuthToken();
-            this.router.navigate(['logout']);
+            this.router.navigate(['/calendar']);
+            console.log('Token expired, redirecting to login');
           }
           return throwError(() => err);
         })
       );
-
   }  
+
 
   public intercept(
     request: HttpRequest<unknown>,

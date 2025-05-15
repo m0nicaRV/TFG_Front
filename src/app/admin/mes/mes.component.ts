@@ -6,72 +6,77 @@ import { DatePickerModule } from 'primeng/datepicker';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { addMonths } from 'date-fns';
-import { calendar } from '../../environments/environments';
-
-
-
+import { Events } from '../../models/events';
 
 @Component({
   selector: 'app-mes',
-  imports: [DatePickerModule, CommonModule, FormsModule, ],
+  imports: [DatePickerModule, CommonModule, FormsModule],
   templateUrl: './mes.component.html',
-  styleUrl: './mes.component.css'
+  styleUrl: './mes.component.css',
 })
 export class MesComponent {
-  selectedMonth : Date =  calendar.day; 
-  events :any []=[];
+  selectedMonth: Date = new Date();
+  @Input() day: Date = new Date();
+  events: Events[] = [];
 
-  diasMes!: {semana : {key:number , fecha:Date ; events: any[]}[]}[];
-  
-constructor(private calendarService: CalendarService) {}
+  diasMes!: { semana: { key: number; fecha: Date; events: any[] }[] }[];
 
-    datePick(){
+  constructor(private calendarService: CalendarService) {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['day']) {
+      this.selectedMonth = changes['day'].currentValue;
+      this.datePick();
+    }
+  }
+
+  datePick() {
     this.diasMes = [];
     const primerDia = new Date(startOfMonth(this.selectedMonth));
     const ultimoDia = new Date(endOfMonth(this.selectedMonth));
-    calendar.day=primerDia;
     this.getEvents();
     let semana = [];
-    for(let i=getISOWeek(primerDia); i<=getISOWeek(ultimoDia); i++){
-        semana = this.calendarService.calcularSemana(startOfISOWeek(primerDia));
-        console.log('Semana:', semana);
-        this.diasMes.push({ semana: semana });
-        //console.log(startOfISOWeek(primerDia));
-        primerDia.setDate(primerDia.getDate() + 7);
-      }
+    for (let i = getISOWeek(primerDia); i <= getISOWeek(ultimoDia); i++) {
+      semana = this.calendarService.calcularSemana(startOfISOWeek(primerDia));
+      console.log('Semana:', semana);
+      this.diasMes.push({ semana: semana });
+      //console.log(startOfISOWeek(primerDia));
+      primerDia.setDate(primerDia.getDate() + 7);
     }
+  }
 
-    addEvents() {
+  addEvents() {}
 
-    }
-
-  next(suma:number) {
-    this.selectedMonth=addMonths(this.selectedMonth,suma);
+  next(suma: number) {
+    this.selectedMonth = addMonths(this.selectedMonth, suma);
     this.datePick();
   }
   ngOnInit() {
     this.datePick();
   }
 
-  getEvents(){
-    this.calendarService.events(startOfMonth(calendar.day), endOfMonth(calendar.day)).subscribe(
-      (data: any) => {
-        console.log('Events:', data);
-        this.events = data.items;
-      },
-      (error) => {
-        console.error('Error fetching events:', error); 
-      }
-    );
-
-    }
-
+  getEvents() {
+    this.calendarService
+      .events(startOfMonth(this.day), endOfMonth(this.day))
+      .subscribe(
+        (data: any) => {
+          this.events = data.items;
+          this.getEventItems();
+        },
+        (error) => {
+          console.error('Error fetching events:', error);
+        }
+      );
   }
-  
 
-
-
-
-
-
-
+  getEventItems() {
+    this.diasMes.forEach((semana) => {
+      semana.semana.forEach((dia) => {
+        dia.events = this.events.filter((event: any) => {
+          const eventDate = new Date(event.start.dateTime);
+          return eventDate.toDateString() === dia.fecha.toDateString();
+        });
+      });
+    });
+  }
+}

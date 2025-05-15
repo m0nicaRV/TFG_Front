@@ -43,6 +43,7 @@ export class TokenService {
 
   removeToken(){
     localStorage.removeItem('auth_token');
+    
   }
   getUser(){
     if(this.isValidToken()){
