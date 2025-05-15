@@ -1,0 +1,53 @@
+<div class="bg-gray-200 p-6 rounded-lg shadow-md max-w-md mx-auto mt-10">
+    <h2 class="text-2xl font-bold text-center mb-6">Crear Nuevo Evento</h2>
+    <form (ngSubmit)="createCalendarEvent()" [formGroup]="eventForm">
+        <div class="mb-4">
+            <label for="summary" class="block text-gray-700 text-sm font-bold mb-2">Nombre y apellido :</label>
+            <input pInputText id="summary" formControlName="summary" class="w-full px-3 py-2 border rounded-md text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+
+
+
+        <div class="flex gap-4 mb-4">
+            <div class="flex-1">
+                <label for="startTime" class="block text-gray-700 text-sm font-bold mb-2">Hora de Inicio:</label>
+                 <p-calendar id="startTime" formControlName="start" [showTime]="true" [showSeconds]="true" [dateFormat]="'yy-mm-dd'" class="w-full"></p-calendar>
+            </div>
+            <div class="flex-1">
+                <label for="endTime" class="block text-gray-700 text-sm font-bold mb-2">Hora de Fin:</label>
+                <p-calendar id="endTime" formControlName="end" [showTime]="true" [showSeconds]="true" [dateFormat]="'yy-mm-dd'" class="w-full"></p-calendar>
+            </div>
+        </div>
+
+        <button pButton type="submit" label="Crear Evento" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-6"></button>
+    </form>
+
+<!--
+    <mat-form-field>
+  <label>{{ type }}</label>
+  <mtx-datetimepicker
+    #datetimePicker
+    [type]="type"
+    [mode]="mode"
+    [multiYearSelector]="multiYearSelector"
+    [calendarHeaderComponent]="customHeader"
+    [startView]="startView"
+    [twelvehour]="twelvehour"
+    [timeInterval]="timeInterval"
+    [touchUi]="touchUi"
+    [timeInput]="timeInput"
+    [timeInputAutoFocus]="timeInputAutoFocus"
+    [showWeekNumbers]="showWeekNumbers"
+  >
+    @if (actionButtons) {
+      <mtx-datetimepicker-actions>
+        <button mat-button mtxDatetimepickerClear>Clear</button>
+        <button mat-button mtxDatetimepickerCancel>Cancel</button>
+        <button mat-raised-button mtxDatetimepickerApply>Apply</button>
+      </mtx-datetimepicker-actions>
+    }
+  </mtx-datetimepicker>
+  <input [mtxDatetimepicker]="datetimePicker" [(ngModel)]="datetime" matInput required />
+  <mtx-datetimepicker-toggle [for]="datetimePicker" matSuffix></mtx-datetimepicker-toggle>
+-->
+</div>

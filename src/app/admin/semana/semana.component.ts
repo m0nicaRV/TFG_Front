@@ -14,10 +14,14 @@ import { DatePickerModule } from 'primeng/datepicker';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Events } from '../../models/events';
+import { MatDialog } from '@angular/material/dialog';
+import { DayComponent } from '../day/day.component';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @Component({
   selector: 'app-semana',
-  imports: [DatePickerModule, CommonModule, FormsModule],
+  imports: [MatIconModule,DatePickerModule, CommonModule, FormsModule],
   templateUrl: './semana.component.html',
   styleUrl: './semana.component.css',
 })
@@ -29,7 +33,7 @@ export class SemanaComponent {
   rangeDates: Date[] = [];
   events: Events[] = [];
 
-  constructor(private calendarService: CalendarService) {}
+  constructor(public dialog:MatDialog,private calendarService: CalendarService) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['day']) {
@@ -83,4 +87,11 @@ export class SemanaComponent {
       });
     });
   }
+
+   abrirDia(events: any, dia: Date) {
+        const dialogRef = this.dialog.open(DayComponent, {
+          width: '500px',
+          data: { events: events, dia: dia },
+        });
+      }
 }

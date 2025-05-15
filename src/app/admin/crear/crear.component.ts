@@ -1,0 +1,69 @@
+import { Component, Inject } from '@angular/core';
+import { CalendarService } from '../calendar.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormControl } from '@angular/forms';
+import {MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
+import { InputTextModule } from 'primeng/inputtext'; 
+ import { CalendarModule } from 'primeng/calendar';
+import { ButtonModule } from 'primeng/button';
+
+
+@Component({
+  selector: 'app-crear',
+  imports: [ 
+    FormsModule,
+    ReactiveFormsModule,
+    InputTextModule,
+    CalendarModule,
+    ButtonModule,
+CommonModule, ReactiveFormsModule],
+  templateUrl: './crear.component.html',
+  styleUrl: './crear.component.css'
+})
+export class CrearComponent {
+  eventForm!: FormGroup;
+  constructor( @Inject(MAT_DIALOG_DATA) public data: {},
+  public dialogRef: MatDialogRef<CrearComponent>, 
+  private formBuilder: FormBuilder,
+    private calendarService: CalendarService){}
+
+    ngOnInit(): void {
+      this.eventForm = new FormGroup({
+        summary: new FormControl('', [Validators.required]),
+        start: new FormControl('', [Validators.required]),
+        end: new FormControl('', [Validators.required])
+      });
+
+    }
+
+
+  createCalendarEvent() {
+    const dateTime = new Date(this.eventForm.get('start')?.value);
+    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const event = {
+      summary: this.eventForm.get('summary')?.value,
+      start: {
+        dateTime:new Date(this.eventForm.get('start')?.value),
+        timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+      },
+      end: {
+        dateTime:new Date(this.eventForm.get('end')?.value),
+        timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+      }
+    };
+
+    this.calendarService.createEvent(event).subscribe(response => {
+      console.log('Evento creado:', response);
+    }, error => {
+      console.error('Error al crear el evento:', error);
+    });
+    this.cerrar();
+ 
+  }
+
+  cerrar() {
+    this.dialogRef.close();
+  }
+}

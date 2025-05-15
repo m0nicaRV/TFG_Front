@@ -7,10 +7,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { addMonths } from 'date-fns';
 import { Events } from '../../models/events';
+import { MatDialog } from '@angular/material/dialog';
+import { DayComponent } from '../day/day.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-mes',
-  imports: [DatePickerModule, CommonModule, FormsModule],
+  imports: [MatIconModule,DatePickerModule, CommonModule, FormsModule],
   templateUrl: './mes.component.html',
   styleUrl: './mes.component.css',
 })
@@ -21,7 +24,7 @@ export class MesComponent {
 
   diasMes!: { semana: { key: number; fecha: Date; events: any[] }[] }[];
 
-  constructor(private calendarService: CalendarService) {}
+  constructor(public dialog:MatDialog ,private calendarService: CalendarService) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['day']) {
@@ -79,4 +82,15 @@ export class MesComponent {
       });
     });
   }
-}
+
+    abrirDia(events: any, dia: Date) {
+      const dialogRef = this.dialog.open(DayComponent, {
+        width: '500px',
+        data: { events: events, dia: dia },
+      });
+    }
+  
+  }
+
+
+

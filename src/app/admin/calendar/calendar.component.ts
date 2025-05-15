@@ -15,6 +15,9 @@ import { MesComponent } from '../mes/mes.component';
 import { endOfISOWeek, format, startOfISOWeek } from 'date-fns';
 import { addDays } from 'date-fns';
 import { es } from 'date-fns/locale';
+import { CrearComponent } from '../crear/crear.component';
+import { MatDialog } from '@angular/material/dialog';
+
 
 
 
@@ -34,7 +37,7 @@ export class CalendarComponent {
   suma:number=7;
   month!: string;
 
-  constructor(private route:Router,private citaService: CitaService, private googleCalendarService: CalendarService) { 
+  constructor(public dialog:MatDialog,private route:Router,private citaService: CitaService, private googleCalendarService: CalendarService) { 
       this.rangeDates[0] = new Date();
   }
 
@@ -81,6 +84,14 @@ export class CalendarComponent {
     this.googleCalendarService.resetAuthToken();
     this.route.navigate(['/']);
   }
+
+  crearEvento() {
+          const dialogRef = this.dialog.open(CrearComponent, {
+            width: '700px',
+            height: '500px',
+            data: { },
+          });
+    }
 
  
 

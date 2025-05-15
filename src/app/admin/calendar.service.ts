@@ -87,6 +87,13 @@ export class CalendarService {
     return semana;
   }
 
+  createEvent(event: any) {
+    const context = new HttpContext().set(IGNORE_AUTH_INTERCEPTOR,true );
+    return this.http.post<any>('https://www.googleapis.com/calendar/v3/calendars/primary/events', event, {  context });
+
+  }
+
+
 
 
 
