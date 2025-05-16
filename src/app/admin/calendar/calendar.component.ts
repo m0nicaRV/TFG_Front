@@ -1,12 +1,9 @@
 import { Component, OnInit , OnDestroy} from '@angular/core';
-import { SimpleChanges } from '@angular/core';
 import { CitaService } from '../../citas/cita.service';
 import {Cita} from '../../models/cita';
 import { CalendarService } from '../calendar.service';
-import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { FloatLabel } from 'primeng/floatlabel';
 import { DatePickerModule } from 'primeng/datepicker';
 import { FormsModule } from '@angular/forms';
 import { SemanaComponent } from '../semana/semana.component';
@@ -16,7 +13,7 @@ import { endOfISOWeek, format, startOfISOWeek } from 'date-fns';
 import { addDays } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { CrearComponent } from '../crear/crear.component';
-import { MatDialog } from '@angular/material/dialog';
+import { DialogModule } from 'primeng/dialog';
 
 
 
@@ -24,7 +21,7 @@ import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-calendar',
   standalone: true,
-  imports: [MesComponent ,SelectButton,CommonModule, DatePickerModule, FormsModule, SemanaComponent],
+  imports: [MesComponent, SelectButton, CommonModule, DatePickerModule, FormsModule, SemanaComponent, DialogModule, CrearComponent],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.css'
 })
@@ -36,8 +33,9 @@ export class CalendarComponent {
   rangeDates: Date[] = [];
   suma:number=7;
   month!: string;
+  visibleEvento: boolean = false;
 
-  constructor(public dialog:MatDialog,private route:Router,private citaService: CitaService, private googleCalendarService: CalendarService) { 
+  constructor(private route:Router,private citaService: CitaService, private googleCalendarService: CalendarService) { 
       this.rangeDates[0] = new Date();
   }
 
@@ -86,11 +84,7 @@ export class CalendarComponent {
   }
 
   crearEvento() {
-          const dialogRef = this.dialog.open(CrearComponent, {
-            width: '700px',
-            height: '500px',
-            data: { },
-          });
+         this.visibleEvento = true;
     }
 
  

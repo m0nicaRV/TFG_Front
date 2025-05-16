@@ -1,9 +1,7 @@
-<div class="p-6">
-    <h2 mat-dialog-title class="bg-white text-gray-800 px-6 py-4 text-lg font-semibold border-b border-gray-200">
-    {{ this.day }}
-    </h2>
+<div class="p-6 border-t border-gray-200">
 
-    <div mat-dialog-content class="bg-white !p-6 ">
+
+    <div mat-dialog-content class="bg-white pb-3 ">
     @for(event of this.events ; track $index){
         <div class="bg-blue-100 text-blue-700 text-xs rounded px-1.5 py-0.5 mb-2 truncate !p-1 flex flex-row gap-5  ">
             <span class="w-full mx-4">{{event.start.dateTime | date: 'HH:mm'}} - {{event.end.dateTime | date: 'HH:mm'}} &nbsp;-> {{event.summary}}</span>
@@ -21,12 +19,7 @@
     }
     </div>
 
-    <div mat-dialog-actions class="bg-white px-6 py-4 flex justify-end border-t border-gray-200">
-    <button mat-button (click)="cerrar()" class="ml-2 px-4 py-2 rounded border border-gray-300 text-gray-700 hover:bg-gray-100 text-sm">
-        Cerrar
-    </button>
-    <button mat-button [mat-dialog-close]="'confirmado'" class="ml-2 px-4 py-2 rounded border border-gray-300 text-gray-700 hover:bg-gray-100 font-semibold text-sm">
-        Aceptar
-    </button>
-    </div>
+
 </div>
+
+

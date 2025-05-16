@@ -78,9 +78,9 @@ export class CalendarService {
   }
 
   calcularSemana(dia: Date) {
-    const semana: { key: number; fecha: Date; events: any[] }[] = [];
+    const semana: { key: number; fecha: Date; events: any[] , visible:boolean}[] = [];
     for (let i = 0; i < 7; i++) {
-      const fecha = { key: dia.getDate(), fecha: new Date(dia), events: [] };
+      const fecha = { key: dia.getDate(), fecha: new Date(dia), events: [], visible:false };
       dia.setDate(dia.getDate() + 1);
       semana.push(fecha);
     }

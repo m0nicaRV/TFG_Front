@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component,Input } from '@angular/core';
 import { Events } from '../../models/events';
 import {MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
@@ -12,18 +12,17 @@ import { es } from 'date-fns/locale';
   styleUrl: './day.component.css'
 })
 export class DayComponent {
-  events!: any ;
+  @Input() events!: any;
+
   day!: any;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {events: Events[], dia:Date},public dialogRef: MatDialogRef<DayComponent>) {
-    this.events = data.events;
-   this.day = format(data.dia, 'd \' de \' MMMM \' del \' yyyy', { locale: es });
-    console.log('Eventos:', this.events);
+  constructor() {
+   
 
   }
 
   cerrar() {
-    this.dialogRef.close();
+    
   }
 
   eliminarEvento(event: Events) {

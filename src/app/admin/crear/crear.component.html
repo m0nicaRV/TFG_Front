@@ -6,21 +6,26 @@
             <input pInputText id="summary" formControlName="summary" class="w-full px-3 py-2 border rounded-md text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
         </div>
 
+      <div class="mb-4">
+          <p-datepicker formControlName="date" [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" />
+      </div>
+
 
 
         <div class="flex gap-4 mb-4">
             <div class="flex-1">
                 <label for="startTime" class="block text-gray-700 text-sm font-bold mb-2">Hora de Inicio:</label>
-                 <p-calendar id="startTime" formControlName="start" [showTime]="true" [showSeconds]="true" [dateFormat]="'yy-mm-dd'" class="w-full"></p-calendar>
+                 <input id="startTime" formControlName="start" type="time" class="w-full px-3 py-2 border rounded-md text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
             <div class="flex-1">
                 <label for="endTime" class="block text-gray-700 text-sm font-bold mb-2">Hora de Fin:</label>
-                <p-calendar id="endTime" formControlName="end" [showTime]="true" [showSeconds]="true" [dateFormat]="'yy-mm-dd'" class="w-full"></p-calendar>
+                <input id="endTime" formControlName="end" type="time" class="w-full px-3 py-2 border rounded-md text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
         </div>
 
         <button pButton type="submit" label="Crear Evento" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-6"></button>
     </form>
+
 
 <!--
     <mat-form-field>

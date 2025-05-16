@@ -14,26 +14,26 @@ import { DatePickerModule } from 'primeng/datepicker';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Events } from '../../models/events';
-import { MatDialog } from '@angular/material/dialog';
 import { DayComponent } from '../day/day.component';
-import { MatIconModule } from '@angular/material/icon';
+import { DialogModule } from 'primeng/dialog';
+
 
 
 @Component({
   selector: 'app-semana',
-  imports: [MatIconModule,DatePickerModule, CommonModule, FormsModule],
+  imports: [DialogModule,DatePickerModule, CommonModule, FormsModule, DayComponent],
   templateUrl: './semana.component.html',
   styleUrl: './semana.component.css',
 })
 export class SemanaComponent {
   @Input() day: Date = new Date();
   weekNumber!: Date;
-  diasSemana: { key: number; fecha: Date; events: any[] }[] = [];
+  diasSemana: { key: number; fecha: Date; events: any[] , visible:boolean}[] = [];
   month!: string;
   rangeDates: Date[] = [];
   events: Events[] = [];
 
-  constructor(public dialog:MatDialog,private calendarService: CalendarService) {}
+  constructor(private calendarService: CalendarService) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['day']) {
@@ -88,10 +88,11 @@ export class SemanaComponent {
     });
   }
 
-   abrirDia(events: any, dia: Date) {
-        const dialogRef = this.dialog.open(DayComponent, {
-          width: '500px',
-          data: { events: events, dia: dia },
-        });
-      }
+
+
+      toggleDia(dia: any, open: boolean, num?: number) {
+        console.log(dia, open, num)
+        dia.visible = open;
+        //console.log('Dia:', dia);
+    }
 }

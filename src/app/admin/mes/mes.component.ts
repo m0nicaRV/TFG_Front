@@ -9,11 +9,13 @@ import { addMonths } from 'date-fns';
 import { Events } from '../../models/events';
 import { MatDialog } from '@angular/material/dialog';
 import { DayComponent } from '../day/day.component';
-import { MatIconModule } from '@angular/material/icon';
+import { DialogModule } from 'primeng/dialog';
+import { es } from 'date-fns/locale';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-mes',
-  imports: [MatIconModule,DatePickerModule, CommonModule, FormsModule],
+  imports: [DatePickerModule, CommonModule, FormsModule, DialogModule, DayComponent],
   templateUrl: './mes.component.html',
   styleUrl: './mes.component.css',
 })
@@ -21,8 +23,9 @@ export class MesComponent {
   selectedMonth: Date = new Date();
   @Input() day: Date = new Date();
   events: Events[] = [];
+  visibleDia: boolean = false;
 
-  diasMes!: { semana: { key: number; fecha: Date; events: any[] }[] }[];
+  diasMes!: { semana: { key: number; fecha: Date; events: any[] ; visible:boolean}[] }[];
 
   constructor(public dialog:MatDialog ,private calendarService: CalendarService) {}
 
@@ -83,14 +86,26 @@ export class MesComponent {
     });
   }
 
-    abrirDia(events: any, dia: Date) {
-      const dialogRef = this.dialog.open(DayComponent, {
-        width: '500px',
-        data: { events: events, dia: dia },
-      });
+    abrirDia(dia:any) {
+      this.diasMes.forEach((semana) => {
+        semana.semana.forEach((d) => {
+          if (d.key == dia.key) {
+            d.visible = !d.visible;
+          } else {
+            d.visible = false;
+          }
+        });
+      }
+      );
     }
   
+
+    toggleDia(dia: any, open: boolean, num?: number) {
+      console.log(dia, open, num)
+      dia.visible = open;
+      //console.log('Dia:', dia);
   }
+}
 
 
 
