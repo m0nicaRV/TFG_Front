@@ -14,6 +14,7 @@ import { addDays } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { CrearComponent } from '../crear/crear.component';
 import { DialogModule } from 'primeng/dialog';
+import { AuthStateService } from '../../shared/auth-state.service';
 
 
 
@@ -35,7 +36,7 @@ export class CalendarComponent {
   month!: string;
   visibleEvento: boolean = false;
 
-  constructor(private route:Router,private citaService: CitaService, private googleCalendarService: CalendarService) { 
+  constructor( public authState: AuthStateService,private route:Router,private citaService: CitaService, private googleCalendarService: CalendarService) { 
       this.rangeDates[0] = new Date();
   }
 

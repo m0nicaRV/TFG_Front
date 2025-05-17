@@ -13,6 +13,7 @@ import { Servicio } from '../../models/servicio';
 import { formatDate } from '@angular/common';
 import { CitaService } from '../cita.service';
 import { Router } from '@angular/router';
+import { AuthStateService } from '../../shared/auth-state.service';
 
 
 
@@ -32,11 +33,12 @@ export class PedirComponent {
   forms!: FormGroup;
   formsTime!: FormGroup;
 
-  constructor(private router: Router, private fb: FormBuilder , private servicioService: ServicioService, private citaService: CitaService) {
+  constructor(public authstate: AuthStateService,private router: Router, private fb: FormBuilder , private servicioService: ServicioService, private citaService: CitaService) {
    
   }
 
   ngOnInit() {
+
     this.servicioService.getAll().subscribe(
       (data:any) => {
         this.servicios = data;

@@ -17,12 +17,12 @@
                     <ul [ngClass]="['bg-[#BDCBD3] absolute  p-4 rounded-lg mt-16 right-0  z-[1] w-2/12 pt-11']">
                         @if (isAdmin){
                             <li><a [routerLink]="'/admin/calendar'">Calendario</a></li>
+                            <li><a [routerLink]="'servicios/create'">Crear</a></li>
                         }@else{                        
                             <li><a [routerLink]="'/citas'">Mis citas</a></li>
                             <li><a [routerLink]="'/citas/pedir'">Pedir cita</a></li>
                             <li><a [routerLink]="'#'">Mis datos</a></li>  
                             <li><a [routerLink]="'#'">Configuracion</a></li>
-                            <li><a [routerLink]="'servicios/create'">Crear</a></li>
                         }
                         <li> 
                             <button type="button" (click)="signOut()" class="dropdown-item link-danger border-0 bg-transparent">

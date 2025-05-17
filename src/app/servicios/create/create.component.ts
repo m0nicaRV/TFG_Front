@@ -5,6 +5,7 @@ import { Servicio } from '../../models/servicio';
 import { CommonModule } from '@angular/common';
 import { ServicioService } from '../servicio.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthStateService } from '../../shared/auth-state.service';
 
 @Component({
   selector: 'app-create',
@@ -20,7 +21,7 @@ export class CreateComponent {
   selectedImage!: any;
 
   constructor(
-  
+    public authState: AuthStateService,
     public servicioService: ServicioService
   ) {
    

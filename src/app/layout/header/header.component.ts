@@ -34,6 +34,7 @@ export class HeaderComponent {
   ngOnInit(): void {
     this.auth.userAuthState.subscribe((val) => {
       this.isLoggedIn = val;
+      console.log('isLoggedIn 11:', this.isLoggedIn);
       if(this.isLoggedIn){
         this.authService.profileUser().subscribe((data:any)=>{
         this.user=data;
