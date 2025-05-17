@@ -19,7 +19,7 @@ constructor(private authService: CalendarService, private router: Router) {}
         catchError((err: HttpErrorResponse) => {
           if (err.status === 401) {
             this.authService.resetAuthToken();
-            this.router.navigate(['/calendar']);
+            this.router.navigate(['/admin/calendar']);
             console.log('Token expired, redirecting to login');
           }
           return throwError(() => err);

@@ -3,6 +3,7 @@ import { Injectable} from '@angular/core';
 import { HttpClient, HttpParams, HttpContext } from '@angular/common/http';
 import { HttpContextToken } from '@angular/common/http';
 import { IGNORE_AUTH_INTERCEPTOR, environment } from '../environments/environments';
+import { Events } from '../models/events';
 
 
 import { BehaviorSubject } from 'rxjs';
@@ -91,6 +92,11 @@ export class CalendarService {
     const context = new HttpContext().set(IGNORE_AUTH_INTERCEPTOR,true );
     return this.http.post<any>('https://www.googleapis.com/calendar/v3/calendars/primary/events', event, {  context });
 
+  }
+
+  deleteEvent(eventId: Events) {
+    const context = new HttpContext().set(IGNORE_AUTH_INTERCEPTOR,true );
+    return this.http.delete<any>(`https://www.googleapis.com/calendar/v3/calendars/primary/events/${eventId}`, { context });
   }
 
 

@@ -43,14 +43,12 @@ export class CrearComponent {
   }
 
   createCalendarEvent() {
-    const dateValue: Date | null | undefined = this.eventForm.get('date')?.value;
-    const startTimeString: string | null | undefined = this.eventForm.get('start')?.value;
-    const endTimeString: string | null | undefined = this.eventForm.get('end')?.value;
+    const dateValue: Date = this.eventForm.get('date')?.value;
+    const startTimeString: string = this.eventForm.get('start')?.value;
+    const endTimeString: string = this.eventForm.get('end')?.value;
+    console.log('Date:', startTimeString);
 
-    if (!dateValue || !startTimeString || !endTimeString) {
-      console.error("Date or time values are missing from the form.");
-      return;
-    }
+    
 
     const [startHours, startMinutes] = startTimeString.split(':').map(Number);
     const startDate = new Date(dateValue);

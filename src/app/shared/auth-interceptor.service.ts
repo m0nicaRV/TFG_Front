@@ -3,6 +3,7 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse
 import { TokenService } from './token.service';
 import { Observable, catchError, throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import {IGNORE_AUTH_INTERCEPTOR} from '../environments/environments';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,9 @@ export class AuthInterceptor implements HttpInterceptor {
           Authorization: `Bearer ${accessToken}`
         }
       });
+    }
+    if(req.context.get(IGNORE_AUTH_INTERCEPTOR)){
+      return next.handle(req);
     }
     return this.handleUnAuthRequestError(req, next);
   }
