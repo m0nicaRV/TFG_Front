@@ -9,6 +9,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
 import { ButtonModule } from 'primeng/button';
 import { DatePickerModule } from 'primeng/datepicker';
+import { FloatLabel } from 'primeng/floatlabel';
 
 @Component({
   selector: 'app-crear',
@@ -19,7 +20,9 @@ import { DatePickerModule } from 'primeng/datepicker';
     CalendarModule,
     ButtonModule,
     CommonModule,
-    ReactiveFormsModule,DatePickerModule
+    ReactiveFormsModule,
+    DatePickerModule,
+    FloatLabel,
 
   ],
   templateUrl: './crear.component.html',
@@ -43,23 +46,17 @@ export class CrearComponent {
   }
 
   createCalendarEvent() {
+
     const dateValue: Date = this.eventForm.get('date')?.value;
     const startTimeString: string = this.eventForm.get('start')?.value;
     const endTimeString: string = this.eventForm.get('end')?.value;
-    console.log('Date:', startTimeString);
-
+     
     
+    const datestart= new Date(startTimeString).setDate(dateValue.getDate())
+    const dateend= new Date(endTimeString).setDate(dateValue.getDate());
 
-    const [startHours, startMinutes] = startTimeString.split(':').map(Number);
-    const startDate = new Date(dateValue);
-    startDate.setHours(startHours, startMinutes, 0, 0);
-
-    const [endHours, endMinutes] = endTimeString.split(':').map(Number);
-    const endDate = new Date(dateValue);
-    endDate.setHours(endHours, endMinutes, 0, 0);
-
-    const startDateTime = startDate.toISOString();
-    const endDateTime = endDate.toISOString();
+    const startDateTime = new Date(datestart).toISOString() ;
+    const endDateTime = new Date(dateend).toISOString();
 
     const event = {
       summary: this.eventForm.get('summary')?.value,

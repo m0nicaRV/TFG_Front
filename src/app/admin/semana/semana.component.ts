@@ -37,7 +37,6 @@ export class SemanaComponent {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['day']) {
-      console.log('Changes detected:', changes);
       this.rangeDates[0] = changes['day'].currentValue;
       this.semana(this.rangeDates[0]);
     }
@@ -45,11 +44,9 @@ export class SemanaComponent {
 
   dataPick() {
     this.month = format(this.rangeDates[0], 'MMMM', { locale: es });
-    console.log('Selected date:', this.rangeDates);
     this.rangeDates[0] = startOfISOWeek(this.rangeDates[0]);
     this.rangeDates[1] = endOfISOWeek(this.rangeDates[0]);
     this.semana(this.rangeDates[0]);
-    this.getEvents();
   }
 
   semana(dia: Date) {
@@ -63,13 +60,15 @@ export class SemanaComponent {
   ngOnInit() {
     this.rangeDates= [startOfISOWeek(this.day), endOfISOWeek(this.day)];
     
+    
   }
 
   getEvents() {
     this.calendarService
-      .events(startOfWeek(this.day), endOfWeek(this.day))
+      .events(startOfISOWeek(this.day), endOfISOWeek(this.day))
       .subscribe(
         (data: any) => {
+          console.log('Eventos de la semana:', data);
           this.events = data.items;
           this.getEventItems();
         },
@@ -90,9 +89,8 @@ export class SemanaComponent {
 
 
 
-      toggleDia(dia: any, open: boolean, num?: number) {
-        console.log(dia, open, num)
+      toggleDia(dia: any, open: boolean) {
+        this.getEvents();
         dia.visible = open;
-        //console.log('Dia:', dia);
     }
 }

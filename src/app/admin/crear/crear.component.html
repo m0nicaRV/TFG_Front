@@ -14,12 +14,16 @@
 
         <div class="flex gap-4 mb-4">
             <div class="flex-1">
-                <label for="startTime" class="block text-gray-700 text-sm font-bold mb-2">Hora de Inicio:</label>
-                 <input id="startTime" formControlName="start" type="time" class="w-full px-3 py-2 border rounded-md text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <p-floatlabel>
+                    <p-datepicker inputId="start" formControlName="start" [timeOnly]="true" class="w-full px-3 py-2 border rounded-md text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                    <label for="start" class="block text-gray-700 text-sm font-bold mb-2">Hora de Inicio:</label>
+                </p-floatlabel>
             </div>
             <div class="flex-1">
-                <label for="endTime" class="block text-gray-700 text-sm font-bold mb-2">Hora de Fin:</label>
-                <input id="endTime" formControlName="end" type="time" class="w-full px-3 py-2 border rounded-md text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <p-floatlabel>
+                    <p-datepicker inputId="end" formControlName="end" [timeOnly]="true" class="w-full px-3 py-2 border rounded-md text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                    <label for="end" class="block text-gray-700 text-sm font-bold mb-2">Hora de Inicio:</label>
+                </p-floatlabel>
             </div>
         </div>
 

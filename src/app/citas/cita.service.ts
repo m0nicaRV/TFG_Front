@@ -11,7 +11,6 @@ export class CitaService {
   constructor( private http: HttpClient) { }
 
   create(cita: FormData): Observable<any> {
-    console.log(cita);
     const headers= new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');
     headers.append('Accept', 'application/json');

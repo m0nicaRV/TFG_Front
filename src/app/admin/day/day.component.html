@@ -9,9 +9,19 @@
                 <button  (click)="eliminarEvento(event.id)" class="float-right">
                 <i class="pi pi-trash text-gray-700"></i>
                 </button>
-                <button  (click)="editarEvento(event)" class="float-right">
+              
+                <button  (click)="editarEvento()" class="float-right">
                 <i class="pi pi-pencil text-gray-700"></i>
-                </button>
+                </button> 
+                <p-dialog [modal]="true" [header]="'Editar Evento'" [(visible)]="this.editar" [ngClass]="{'visible absolute' : this.editar, 'hidden' :this.editar }" (click)="editarEvento()" appendTo="body"> 
+                    <app-edit   [eventId]="event.id"></app-edit>
+                    <div class="bg-white px-6 py-4 flex justify-end border-t border-gray-200">
+                        <button (click)="editarEvento() " class="ml-2 px-4 py-2 rounded border border-gray-300 text-gray-700 hover:bg-gray-100 font-semibold text-sm">
+                             Cerrar
+                        </button>
+                    </div>
+               </p-dialog>
+
             </div>
             
 

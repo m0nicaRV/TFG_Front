@@ -68,7 +68,6 @@
        *  Sign in the user upon button click.
        */
       function handleAuthClick() {
-        console.log('handleAuthClick');
         tokenClient.callback = async (resp) => {
           if (resp.error !== undefined) {
             throw (resp);

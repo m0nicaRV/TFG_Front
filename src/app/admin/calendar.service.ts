@@ -67,6 +67,8 @@ export class CalendarService {
   }
 
   public events(timeMin:Date, timeMax:Date){
+    console.log('TimeMin:', timeMin);
+    console.log('TimeMax:', timeMax);
     const params = new HttpParams()
     .set('timeMin', timeMin.toISOString())
     .set('timeMax', timeMax.toISOString())
@@ -98,6 +100,19 @@ export class CalendarService {
     const context = new HttpContext().set(IGNORE_AUTH_INTERCEPTOR,true );
     return this.http.delete<any>(`https://www.googleapis.com/calendar/v3/calendars/primary/events/${eventId}`, { context });
   }
+
+
+  getEvent(eventId: string) {
+    const context = new HttpContext().set(IGNORE_AUTH_INTERCEPTOR,true );
+    return this.http.get<any>(`https://www.googleapis.com/calendar/v3/calendars/primary/events/${eventId}`, { context });
+  }
+
+  updateEvent(eventId: string, event: any) {
+    const context = new HttpContext().set(IGNORE_AUTH_INTERCEPTOR,true );
+    return this.http.put<any>(`https://www.googleapis.com/calendar/v3/calendars/primary/events/${eventId}`, event, { context });
+  }
+
+
 
 
 

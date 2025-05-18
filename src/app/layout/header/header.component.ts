@@ -34,10 +34,10 @@ export class HeaderComponent {
   ngOnInit(): void {
     this.auth.userAuthState.subscribe((val) => {
       this.isLoggedIn = val;
-      console.log('isLoggedIn 11:', this.isLoggedIn);
       if(this.isLoggedIn){
         this.authService.profileUser().subscribe((data:any)=>{
         this.user=data;
+        this.auth.setAdmin(data.role_id == 1);
         this.isAdmin = this.user.role_id == 1 ? true : false;
         });
     }

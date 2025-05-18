@@ -69,7 +69,6 @@ export class CalendarComponent {
       this.citaService.index().subscribe(
         (data: any) => {
           this.citas = data;
-          console.log(this.citas);
 
         },
         (error) => {

@@ -32,7 +32,6 @@ constructor(private authService: CalendarService, private router: Router) {}
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    console.log(request.context.get(IGNORE_AUTH_INTERCEPTOR));
 
     if(request.context.get(IGNORE_AUTH_INTERCEPTOR)) {
        const token = this.authService.getAuthToken();

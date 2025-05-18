@@ -29,6 +29,8 @@ export class loginComponent implements OnInit {
     this.authService.login(this.loginForm.value).subscribe(
       (result)=>{
         this.responseHandler(result);
+        
+
       },
       (error)=>{
         this.errors=error.error;

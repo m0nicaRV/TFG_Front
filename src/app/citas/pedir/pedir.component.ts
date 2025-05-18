@@ -72,7 +72,6 @@ onSubmit() {
         times.inicio = formatDate(times.inicio, 'HH:mm:ss', 'en-US');
         times.fin = formatDate(times.fin, 'HH:mm:ss', 'en-US');
         times.semana = times.semana.join(', ');
-      console.log(this.forms.value);
     });
 
 

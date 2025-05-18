@@ -58,7 +58,6 @@ export class CreateComponent {
       Servicio.append('tiempo', this.servicioForm.get('tiempo')?.value);
       Servicio.append('descripcion', this.servicioForm.get('descripcion')?.value);
       Servicio.append('foto', this.selectedImage);
-      console.log('Servicio:', Servicio);
 
 
       this.servicioService.create(Servicio).subscribe({

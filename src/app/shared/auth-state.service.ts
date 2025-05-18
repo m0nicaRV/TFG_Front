@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs'; 
+import { BehaviorSubject, map, Observable } from 'rxjs'; 
 import { TokenService } from './token.service';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
+import { is } from 'date-fns/locale';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthStateService {
-
+  Admin: boolean = false;
   private userState: BehaviorSubject<boolean>;
   public userAuthState: Observable<boolean>; 
 
 
   constructor(
     public authService: AuthService,
-   public router: Router,
+    public router: Router,
     public token: TokenService
   ) {
     
@@ -39,17 +40,13 @@ export class AuthStateService {
     
   }
 
-  isAdmin(): boolean {
-    if (this.isUserLoggedIn) {
-      let isAdmin = false;
-      this.authService.profileUser().subscribe((data: any) => {
-        if (data.role_id === 1) {
-          isAdmin = true;
-        }
-      });
-      return isAdmin;
-    }
-    return false;
+  setAdmin(value: boolean): void {
+    this.Admin = value;
+  }
+
+  getisAdmin(): boolean {
+    return this.Admin;
+   
   }
 
 

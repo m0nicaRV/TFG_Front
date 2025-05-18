@@ -7,7 +7,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { addMonths } from 'date-fns';
 import { Events } from '../../models/events';
-import { MatDialog } from '@angular/material/dialog';
 import { DayComponent } from '../day/day.component';
 import { DialogModule } from 'primeng/dialog';
 import { es } from 'date-fns/locale';
@@ -27,7 +26,7 @@ export class MesComponent {
 
   diasMes!: { semana: { key: number; fecha: Date; events: any[] ; visible:boolean}[] }[];
 
-  constructor(public dialog:MatDialog ,private calendarService: CalendarService) {}
+  constructor(private calendarService: CalendarService) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['day']) {
@@ -44,9 +43,7 @@ export class MesComponent {
     let semana = [];
     for (let i = getISOWeek(primerDia); i <= getISOWeek(ultimoDia); i++) {
       semana = this.calendarService.calcularSemana(startOfISOWeek(primerDia));
-      console.log('Semana:', semana);
       this.diasMes.push({ semana: semana });
-      //console.log(startOfISOWeek(primerDia));
       primerDia.setDate(primerDia.getDate() + 7);
     }
   }
@@ -77,34 +74,27 @@ export class MesComponent {
 
   getEventItems() {
     this.diasMes.forEach((semana) => {
+
       semana.semana.forEach((dia) => {
         dia.events = this.events.filter((event: any) => {
           const eventDate = new Date(event.start.dateTime);
           return eventDate.toDateString() === dia.fecha.toDateString();
         });
       });
+
+
+
     });
   }
 
-    abrirDia(dia:any) {
-      this.diasMes.forEach((semana) => {
-        semana.semana.forEach((d) => {
-          if (d.key == dia.key) {
-            d.visible = !d.visible;
-          } else {
-            d.visible = false;
-          }
-        });
-      }
-      );
-    }
-  
 
-    toggleDia(dia: any, open: boolean, num?: number) {
-      console.log(dia, open, num)
+
+  toggleDia(dia: any, open: boolean) {
+     this.getEvents();
       dia.visible = open;
-      //console.log('Dia:', dia);
   }
+
+
 }
 
 

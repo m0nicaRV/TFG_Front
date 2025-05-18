@@ -23,7 +23,6 @@ export class IndexComponent {
       (data:any) => {
         this.servicios = data;
         console.log('IndexComponent initialized');
-        console.log(this.servicios);
       },
       (error) => {
         console.error('Error fetching servicios:', error);

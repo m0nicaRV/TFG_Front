@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../models/user'; // Adjust the import path as necessary
+import { User } from '../models/user';
 import { HttpContextToken } from '@angular/common/http';
 import { environment } from '../environments/environments';
 
