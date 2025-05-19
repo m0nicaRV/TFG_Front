@@ -1,30 +1,27 @@
 import { AbstractControl, ValidatorFn, FormGroup } from '@angular/forms';
 
-export function passwordMatchValidator(): ValidatorFn {
-  return (form: AbstractControl): { [key: string]: any } | null => {
-    if (!(form instanceof FormGroup)) {
-      console.error('passwordMatchValidator must be applied to a FormGroup.');
+
+export function PassValidator(
+  passwordKey: string = 'password', 
+  confirmPasswordKey: string = 'password_confirmation'
+): ValidatorFn {
+ 
+    return (formGroup: AbstractControl): { [key: string]: any } | null => {
+
+    if (!(formGroup instanceof FormGroup)) {
+      console.warn('El validador passwordMatchValidator está diseñado para usarse con un FormGroup. ' +
+         'La validación de coincidencia de contraseñas no se aplicará.'); 
       return null;
+     }
+    const passwordControl = formGroup.get(passwordKey); 
+    const confirmPasswordControl = formGroup.get(confirmPasswordKey);
+    if (passwordControl && confirmPasswordControl && passwordControl.value && confirmPasswordControl.value) { 
+      if (passwordControl.value !== confirmPasswordControl.value) { 
+        return { 
+          contrasenasNoCoinciden: { message: 'Las contraseñas introducidas no coinciden.', }, 
+        }; 
+      } 
     }
-
-    const passwordControl = form.get('password');
-    const confirmPasswordControl = form.get('password_confirmation');
-
-    if (!passwordControl || !confirmPasswordControl || !passwordControl.value || !confirmPasswordControl.value) {
-         if (confirmPasswordControl && confirmPasswordControl.hasError('mismatch')) {
-            confirmPasswordControl.setErrors(null);
-         }
-        return null;
-    }
-
-    if (passwordControl.value !== confirmPasswordControl.value) {
-      confirmPasswordControl.setErrors({ mismatch: true });
-       return null;
-    } else {
-      if (confirmPasswordControl.hasError('mismatch')) {
-        confirmPasswordControl.setErrors(null);
-      }
-      return null;
-    }
+    return null;
   };
 }

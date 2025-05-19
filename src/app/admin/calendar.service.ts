@@ -1,9 +1,10 @@
 
 import { Injectable} from '@angular/core';
-import { HttpClient, HttpParams, HttpContext } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpContext, HttpHeaders } from '@angular/common/http';
 import { HttpContextToken } from '@angular/common/http';
 import { IGNORE_AUTH_INTERCEPTOR, environment } from '../environments/environments';
 import { Events } from '../models/events';
+import { Observable } from 'rxjs';
 
 
 import { BehaviorSubject } from 'rxjs';
@@ -110,6 +111,17 @@ export class CalendarService {
   updateEvent(eventId: string, event: any) {
     const context = new HttpContext().set(IGNORE_AUTH_INTERCEPTOR,true );
     return this.http.put<any>(`https://www.googleapis.com/calendar/v3/calendars/primary/events/${eventId}`, event, { context });
+  }
+
+  aceptEvent(eventId: number, event: any): Observable<any> {
+     const headers= new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+     return this.http.post(`${environment.url_host}api/citas/aceptar/${eventId}`, event ,( {headers: headers}));
+  }
+
+  sendCorreo(mail: any): Observable<any> {
+    return this.http.post('https://www.googleapis.com/gmail/v1/users/me/messages/send', mail);
   }
 
 

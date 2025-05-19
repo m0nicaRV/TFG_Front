@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { CalendarService } from '../calendar.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -12,6 +12,9 @@ import { DatePickerModule } from 'primeng/datepicker';
 import { FloatLabel } from 'primeng/floatlabel';
 import { User } from '../../models/user';
 import { AutoComplete } from 'primeng/autocomplete';
+import { Cita } from '../../models/cita';
+import {format } from 'date-fns';
+
 
 @Component({
   selector: 'app-crear',
@@ -32,6 +35,8 @@ import { AutoComplete } from 'primeng/autocomplete';
   styleUrl: './crear.component.css',
 })
 export class CrearComponent {
+  
+  @Input() cita : Cita | null = null;
   eventForm!: FormGroup;
   users: User[] = [];
   selectUser :User[] = [];
@@ -59,6 +64,11 @@ export class CrearComponent {
       start: new FormControl('', [Validators.required]),
       end: new FormControl('', [Validators.required]),
     });
+
+    if(this.cita !== null){
+      this.eventForm.get('summary')?.setValue(this.cita.user?.name);
+
+    }
   }
 
   createCalendarEvent() {
@@ -74,6 +84,7 @@ export class CrearComponent {
     const startDateTime = new Date(datestart).toISOString() ;
     const endDateTime = new Date(dateend).toISOString();
 
+
     const event = {
       summary: this.eventForm.get('summary')?.value,
       start: {
@@ -85,6 +96,26 @@ export class CrearComponent {
         timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       },
     };
+    console.log('fecha_inicio:', startDateTime);
+    console.log('fecha_fin:', endDateTime);
+    if(this.cita !== null){
+      const eventApi = {
+        fecha_inicio: format(startDateTime, 'yyyy-MM-dd HH:mm:ss'),
+        fecha_fin: format(endDateTime, 'yyyy-MM-dd HH:mm:ss'),
+      }
+      this.calendarService.aceptEvent(this.cita.id, eventApi).subscribe(
+        (response) => {
+          console.log('Evento aceptado:', response);
+        },
+        (error) => {
+          console.error('Error al aceptar el evento:', error);
+        }
+      );
+
+
+
+
+    }
 
     this.calendarService.createEvent(event).subscribe(
       (response) => {
@@ -101,6 +132,7 @@ export class CrearComponent {
   cerrar() {
     
   }
+  showDialog() {}
 
 
   search(event: any) {

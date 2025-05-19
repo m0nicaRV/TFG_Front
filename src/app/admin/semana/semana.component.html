@@ -20,11 +20,7 @@
       [modal]="true"
       [header]="dia.fecha.toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })"
       [style]="{width: '90vw', maxWidth: '600px'}"
-      [draggable]="false"
-      [resizable]="false"
-      (onHide)="toggleDia(dia, false)"
       appendTo="body"
-      [dismissableMask]="true"
       styleClass="event-details-dialog"
        [ngClass]="{'visible absolute' : dia.visible, 'hidden': !dia.visible}"
     >

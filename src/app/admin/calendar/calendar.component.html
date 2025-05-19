@@ -136,21 +136,31 @@
 </button>
 <div class="flex flex-wrap w-4/5 mx-auto">
   @for (cita of citas ; track $index){
-  <div
-    class="bg-[#BDCBD3] flex flex-col w-2/5 rounded-3xl z-0 p-6 mx-auto my-6"
-  >
-    <div class="bg-white rounded-3xl p-4 flex flex-col">
-      <h2 class="text-2xl">{{ cita.user?.name }}</h2>
-      <p class="mb-3">{{ cita.dolencia }}</p>
-      @for ( time of cita.disponibilidad; track $index){
-      <div class="flex flex-row">
-        <p class="text-sm text-gray-500">
-          <i class="fa-solid fa-clock"></i>{{ time.inicio }} - {{ time.fin }} ->
-          {{ time.semana }}
-        </p>
+    <div class="bg-[#BDCBD3] flex flex-col w-2/5 rounded-3xl z-0 p-6 mx-auto my-6">
+      <div class="bg-white rounded-3xl p-4 flex flex-col">
+        <h2 class="text-2xl">{{ cita.user?.name }}</h2>
+        <p class="mb-3">{{ cita.dolencia }}</p>
+        @for ( time of cita.disponibilidad; track $index){
+        <div class="flex flex-row">
+          <p class="text-sm text-gray-500">
+            <i class="fa-solid fa-clock"></i>{{ time.inicio }} - {{ time.fin }} ->
+            {{ time.semana }}
+          </p>
+        </div>
+        }
       </div>
-      }
+      <button (click)="toggleEvent(cita)">añadir</button>
     </div>
-  </div>
+    <p-dialog [(visible)]="cita.visible" [modal]="true" [header]="'Añadir cita'" [style]="{width: '90vw', maxWidth: '600px'}" appendTo="body" styleClass="event-details-dialog">
+      <ng-template pTemplate="content">
+        <app-crear [cita]="cita"></app-crear>
+      </ng-template>
+      <ng-template pTemplate="footer">
+        <div class="dialog-footer">
+          <button type="button" pButton icon="pi pi-times" (click)="toggleEvent(cita)" label="Cerrar" class="p-button-text dialog-close-button"></button>
+        </div>
+      </ng-template>
+
+    </p-dialog>
   }
 </div>

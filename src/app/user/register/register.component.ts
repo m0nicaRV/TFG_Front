@@ -5,7 +5,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { dniValidator } from '../../validators/dni';
-import { passwordMatchValidator } from '../../validators/password';
+import { PassValidator } from '../../validators/password';
 
 
 
@@ -29,7 +29,7 @@ export class registerComponent implements OnInit {
       password: new FormControl('',[Validators.required, Validators.minLength(6)]),
       password_confirmation: new FormControl('',[Validators.required, Validators.minLength(6)]),
     },{
-    validators: passwordMatchValidator()
+    validators:[PassValidator('password', 'password_confirmation'), dniValidator()] ,
   });
   }
 

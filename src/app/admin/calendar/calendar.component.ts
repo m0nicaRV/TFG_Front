@@ -18,7 +18,6 @@ import { AuthStateService } from '../../shared/auth-state.service';
 
 
 
-
 @Component({
   selector: 'app-calendar',
   standalone: true,
@@ -68,7 +67,11 @@ export class CalendarComponent {
       this.dataPick();
       this.citaService.index().subscribe(
         (data: any) => {
+          data.forEach((cita: Cita) => {
+            cita.visible = false;
+          });
           this.citas = data;
+          console.log('Citas:',data);
 
         },
         (error) => {
@@ -87,7 +90,10 @@ export class CalendarComponent {
          this.visibleEvento = true;
     }
 
- 
+  toggleEvent( cita: Cita) {
+    cita.visible= !cita.visible;
+
+  }
 
   onSubmit() {
   

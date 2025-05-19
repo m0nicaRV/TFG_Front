@@ -17,7 +17,7 @@
                     <i class="pi pi-user app-header-user-icon"></i>
                 </li>
                 @if (isMenuOpen) {
-                    <ul class="app-header-user-menu">
+                    <ul class="app-header-user-menu" (click)="toggleMenu()" >
                         <div class="app-header-user-menu-content-wrapper">
                             @if (isAdmin) {
                                 <li class="app-header-user-menu-item"><a [routerLink]="'/admin/calendar'">Calendario</a></li>

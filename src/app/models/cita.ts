@@ -1,5 +1,6 @@
 export interface Cita {
-    id?: number;
+    visible: boolean;
+    id: number;
     dolencia?: string;
     disponibilidad?: {
         cita_id: number;

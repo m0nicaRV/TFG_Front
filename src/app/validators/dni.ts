@@ -1,12 +1,13 @@
-import { AbstractControl, ValidatorFn } from '@angular/forms';
+import { AbstractControl, ValidatorFn,FormGroup } from '@angular/forms';
 
 
 export function dniValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
-    const value = control.value;
+    const value = control.value.dni;
 
     if (!value) {
-      return null;
+
+      return{invalidDni: { message: 'El DNI es obligatorio.' }} ; 
     }
 
     if (typeof value !== 'string' || value.length !== 9) {

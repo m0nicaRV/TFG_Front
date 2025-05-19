@@ -23,6 +23,12 @@
     }
       -->
 
+<div *ngFor="let error of registerForm.errors | keyvalue" class="form-error-message" role="alert">
+  <i class="pi pi-exclamation-circle form-error-message__icon"></i>
+  <span class="form-error-message__text">{{error.value.message}}.</span>
+</div>
+
+
   @for (fieldEntry of errors | keyvalue; track  fieldEntry.key) {
     <div class="error" role="alert">
       <span>{{ fieldEntry.key }} : {{ fieldEntry.value }}</span>">
