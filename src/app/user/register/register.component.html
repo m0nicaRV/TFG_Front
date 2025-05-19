@@ -1,10 +1,28 @@
-<div class="auth-container"> <form
-  class="auth-form-card" [formGroup]="registerForm"
-  (ngSubmit)="onSubmit()"
->
-  <h3 class="login-heading"> Register User
-  </h3>
- 
+<div class="auth-page-container">
+  <form
+    class="auth-form-card auth-form-structure"
+    [formGroup]="registerForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <h3 class="auth-form-title">Register User</h3>
+
+  <!-- @if (errors && (errors | keyvalue).length > 0) {
+      @for (fieldEntry of errors | keyvalue; track fieldEntry.key) {
+        <div class="form-error-message" role="alert">
+          <i class="pi pi-exclamation-circle form-error-message__icon"></i>
+          <span class="form-error-message__text">
+            <strong>{{ fieldEntry?.key | titlecase }}:</strong>
+            @if (typeof fieldEntry.value === 'string') {
+              {{ fieldEntry.value }}
+            } @else if (Array.isArray(fieldEntry.value)) {
+              {{ fieldEntry.value.join(', ') }}
+            }
+          </span>
+        </div>
+      }
+    }
+      -->
+
   @for (fieldEntry of errors | keyvalue; track  fieldEntry.key) {
     <div class="error" role="alert">
       <span>{{ fieldEntry.key }} : {{ fieldEntry.value }}</span>">
@@ -14,46 +32,53 @@
     </div>
   }
 
-  @if (registerForm.get('email')?.errors) {
-    <div class="error" role="alert">
-      <span>{{ registerForm.get('email')?.errors?.['required'] }}</span>
+    @if (registerForm.get('email')?.hasError('required') && registerForm.get('email')?.touched) {
+      <div class="form-error-message" role="alert">
+        <i class="pi pi-exclamation-circle form-error-message__icon"></i>
+        <span class="form-error-message__text">El campo Email es requerido.</span>
+      </div>
+    }
+    @if (registerForm.get('email')?.hasError('email') && registerForm.get('email')?.touched) {
+      <div class="form-error-message" role="alert">
+        <i class="pi pi-exclamation-circle form-error-message__icon"></i>
+        <span class="form-error-message__text">Por favor, introduce un correo electrónico válido.</span>
+      </div>
+    }
+    <div class="form-field-group">
+      <label class="form-field-label" for="name">Name</label>
+      <input type="text" id="name" class="form-field-input" [formControlName]="'name'" placeholder="Tu nombre completo"/>
     </div>
-  }
 
-  
-  <div class="form-group"> 
-    <label class="form-label" for="name"> Name </label>
-    <input type="text" id="name" class="form-input" [formControlName]="'name'"/>
+    <div class="form-field-group">
+      <label class="form-field-label" for="dni">DNI</label>
+      <input type="text" id="dni" class="form-field-input" [formControlName]="'dni'" placeholder="Tu DNI"/>
     </div>
 
-    <div class="form-group"> 
-      <label class="form-label" for="dni"> DNI </label>
-      <input type="text" id="dni" class="form-input" [formControlName]="'dni'"/> 
+    <div class="form-field-group">
+      <label class="form-field-label" for="email">Email address</label>
+      <input type="email" id="email" class="form-field-input" [formControlName]="'email'" placeholder="tu@correo.com"/>
     </div>
 
-  <div class="form-group"> 
-    <label class="form-label" for="email"> Email address </label>
-    <input type="email" id="email"  class="form-input" [formControlName]="'email'" />
-  </div>
+    <div class="form-field-group">
+      <label class="form-field-label" for="telefono">Phone</label>
+      <input type="text" id="telefono" class="form-field-input" [formControlName]="'telefono'" placeholder="Tu número de teléfono"/>
+    </div>
 
-  <div class="form-group"> 
-    <label class="form-label" for="telefono"> Phone </label>
-    <input type="text" id="telefono" class="form-input" [formControlName]="'telefono'"/>
-  </div>
+    <div class="form-field-group">
+      <label class="form-field-label" for="password">Password</label>
+      <input type="password" id="password" class="form-field-input" [formControlName]="'password'" placeholder="Mínimo 8 caracteres"/>
+    </div>
 
-  <div class="form-group">
-    <label class="form-label" for="password"> Password </label>
-    <input type="password" id="password"  class="form-input" [formControlName]="'password'"/>
-  </div>
+    <div class="form-field-group">
+      <label class="form-field-label" for="password_confirmation">Confirm Password</label>
+      <input type="password" id="password_confirmation" class="form-field-input" [formControlName]="'password_confirmation'" placeholder="Repite tu contraseña"/>
+    </div>
 
-  <div class="form-group"> <label class="form-label" for="password_confirmation"> Confirm Password
-    </label>
-    <input type="password" id="password_confirmation" class="form-input" [formControlName]="'password_confirmation'"/>
-  </div>
-
-  <div class="button-container"> 
-    <button type="submit" class="form-button" [disabled]="registerForm.invalid" > Register User  </button>
-  </div>
-
+    <div class="form-button-container">
+      <button type="submit" class="form-submit-button" [disabled]="registerForm.invalid">
+        <span>Register User</span>
+        <i class="pi pi-user-plus form-submit-button__icon"></i>
+      </button>
+    </div>
   </form>
 </div>

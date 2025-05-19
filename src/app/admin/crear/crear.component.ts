@@ -4,12 +4,14 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FormControl } from '@angular/forms';
-
+import { AuthService } from '../../shared/auth.service';
 import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
 import { ButtonModule } from 'primeng/button';
 import { DatePickerModule } from 'primeng/datepicker';
 import { FloatLabel } from 'primeng/floatlabel';
+import { User } from '../../models/user';
+import { AutoComplete } from 'primeng/autocomplete';
 
 @Component({
   selector: 'app-crear',
@@ -23,6 +25,7 @@ import { FloatLabel } from 'primeng/floatlabel';
     ReactiveFormsModule,
     DatePickerModule,
     FloatLabel,
+    AutoComplete
 
   ],
   templateUrl: './crear.component.html',
@@ -30,13 +33,26 @@ import { FloatLabel } from 'primeng/floatlabel';
 })
 export class CrearComponent {
   eventForm!: FormGroup;
+  users: User[] = [];
+  selectUser :User[] = [];
   constructor(
     
     private formBuilder: FormBuilder,
-    private calendarService: CalendarService
+    private calendarService: CalendarService,
+    private authService: AuthService,
   ) {}
 
   ngOnInit(): void {
+    this.authService.getUsers().subscribe(
+      (response) => {
+        this.users = response;
+        console.log('Usuarios:', this.users);
+      },
+      (error) => {
+        console.error('Error al obtener los usuarios:', error);
+      }
+    );
+
     this.eventForm = new FormGroup({
       summary: new FormControl('', [Validators.required]),
       date:new FormControl('', [Validators.required]),
@@ -84,5 +100,17 @@ export class CrearComponent {
 
   cerrar() {
     
+  }
+
+
+  search(event: any) {
+   this.selectUser=[]
+    const query = event.query;
+    for(let i = 0; i < this.users.length; i++) {
+      const user = this.users[i];
+      if (user.name.toLowerCase().includes(query.toLowerCase())) {
+        this.selectUser.push(user);
+      }
+    }
   }
 }

@@ -1,15 +1,39 @@
-.card{
-    @apply  bg-[#BDCBD3] flex flex-row  justify-center w-4/5 rounded-3xl z-0  p-6 mx-auto gap-10 my-6
+.services-title {
+  @apply text-3xl sm:text-4xl lg:text-5xl font-bold text-center text-slate-700 my-8 lg:my-12 pb-3;
 }
-.card img{
-    @apply rounded-lg w-2/5
+
+.services-list-container {
+  @apply w-full px-4;
 }
-.card-body{
-    @apply w-1/2 bg-white rounded-3xl  p-6 gap-4 flex flex-col
+
+.service-card-item {
+  @apply bg-[#BDCBD3] flex flex-col md:flex-row md:items-stretch w-full max-w-3xl lg:max-w-4xl rounded-3xl shadow-lg p-6 sm:p-8 mx-auto my-6 lg:my-8 gap-6 md:gap-8;
 }
-.card-body h2{
-    @apply text-2xl
+
+.service-card-item__image {
+  @apply rounded-xl w-full md:w-2/5 h-64 md:h-auto object-cover self-center md:self-stretch;
+
 }
-.time{
-    @apply items-center flex gap-3
+
+.service-card-item__body {
+  @apply w-full md:w-3/5 bg-white rounded-2xl p-6 flex flex-col justify-between gap-4;
+
+}
+
+.service-card-item__title {
+  @apply text-xl sm:text-2xl font-semibold text-slate-800 text-center md:text-left;
+}
+
+.service-card-item__description {
+  @apply text-slate-600 text-sm sm:text-base leading-relaxed text-center md:text-left flex-grow;
+
+}
+
+.service-card-item__time-details {
+  @apply flex items-center justify-center md:justify-start gap-2 sm:gap-3 text-slate-500 mt-3 pt-3 border-t border-slate-200;
+}
+
+.service-card-item__time-icon {
+  @apply text-sky-600; 
+
 }

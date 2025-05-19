@@ -33,6 +33,10 @@ export class AuthService {
     return this.http.post(environment.url_host+'api/logout', null);
   }
 
+  getUsers(): Observable<any> {
+    return this.http.get(environment.url_host+'api/users');
+  }
+
   
 
 }

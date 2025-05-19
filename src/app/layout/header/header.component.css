@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .app-header {
+    @apply flex flex-row justify-between items-center px-4 py-3 sm:px-5 md:px-6 md:py-4 bg-[#BDCBD3];
+  }
+
+  .app-header-logo-link-container {
+    @apply mb-3 sm:mb-0 self-start sm:self-center; /* Align logo to start on mobile column layout */
+  }
+
+  .app-header-logo-link {
+    @apply block shrink-0;
+  }
+
+  .app-header-logo-image {
+    @apply w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full object-cover;
+  }
+
+  .app-header-nav-container {
+    @apply flex-grow flex gap-5   justify-end w-full sm:w-auto;
+  }
+
+  .app-header-nav-list {
+    @apply flex flex-row flex-wrap items-center justify-center sm:justify-end 
+           gap-x-3 gap-y-2 sm:gap-x-4 md:gap-x-5 
+           text-base  lg:text-3xl md:text-xl
+           relative z-20;
+  }
+
+  .app-header-nav-link {
+    @apply hover:text-white transition-colors duration-150 whitespace-nowrap ;
+  }
+
+
+
+  .app-header-user-icon-wrapper {
+    @apply absolute  right-2 top-2 sm:right-3 md:top-4 md:right-4 
+           w-10 h-10 sm:w-12 sm:h-12 md:w-20 md:h-20 
+           flex !items-center !justify-center 
+           bg-[#BDCBD3] border-2 sm:border-[3px] md:border-4 border-white rounded-full 
+           cursor-pointer z-30
+           hover:shadow-md transition-all duration-150;
+  }
+
+  .app-header-user-icon {
+    @apply text-white md:mt-2 sm:mt-2 text-lg sm:text-xl md:text-5xl lg:text-5xl; /* Adjusted sizes */
+  }
+
+  .app-header-user-menu {
+    @apply absolute bg-[#B0C0C8] shadow-xl rounded-lg 
+           top-full right-0 mt-2 sm:mt-3 md:mt-4 z-40 
+           w-52 sm:w-56 md:w-60;
+     @apply top-[calc(theme(spacing.4)_+_theme(spacing.14)_+_theme(spacing.2))] sm:top-[calc(theme(spacing.3)_+_theme(spacing.12)_+_theme(spacing.3))];
+  }
+
+  .app-header-user-menu-content-wrapper {
+    @apply p-2 sm:p-3 space-y-1;
+  }
+
+  .app-header-user-menu-item a,
+  .app-header-user-menu-item .app-header-user-menu-button-logout {
+    @apply block w-full text-left px-2 py-1.5 sm:px-3 sm:py-2 
+           text-sm md:text-base text-gray-800 
+           hover:bg-[#A8B9C2] hover:text-gray-900 rounded-md transition-colors;
+  }
+
+  .app-header-user-menu-button-logout {
+    @apply text-red-600 hover:text-red-700 hover:bg-red-100;
+  }
+
+  .app-loading-overlay {
+    @apply flex justify-center items-center mt-5;
+  }
+
+  .app-loading-spinner {
+    @apply w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin;
+  }
+
+  .app-visually-hidden {
+    @apply sr-only;
+  }
+}

@@ -1,33 +1,31 @@
-<div class="bg-gray-200 p-6 rounded-lg shadow-md max-w-md mx-auto mt-10">
-    <h2 class="text-2xl font-bold text-center mb-6">Crear Nuevo Evento</h2>
+<div class="bg-gray-200 p-6 rounded-lg shadow-md md:w-4/5 sm:w-full mx-auto mt-10">
+    <h2 class="md:text-2xl sm:text-xl  font-bold text-center mb-6 text-gray-800">Crear Nuevo Evento</h2>
     <form (ngSubmit)="EditCalendarEvent()" [formGroup]="eventForm">
-        <div class="mb-4">
-            <label for="summary" class="block text-gray-700 text-sm font-bold mb-2">Nombre y apellido :</label>
-            <input pInputText id="summary" formControlName="summary" class="w-full px-3 py-2 border rounded-md text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        <div class="form-group">
+            <label for="summary" class="form-label">Nombre y apellido:</label>
+            <input pInputText id="summary" formControlName="summary" class="form-input">
         </div>
 
-      <div class="mb-4">
-          <p-datepicker formControlName="date" [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" />
-      </div>
-
-
+        <div class="form-group">
+            <label for="date" class="form-label">Fecha:</label>
+            <p-datepicker inputId="date" formControlName="date" [iconDisplay]="'input'" [showIcon]="true" styleClass="w-full"></p-datepicker>
+        </div>
 
         <div class="flex gap-4 mb-4">
-            <div class="flex-1">
+            <div class="flex-1 form-group">
                 <p-floatlabel>
-                    <p-datepicker inputId="start" formControlName="start" [timeOnly]="true" class="w-full px-3 py-2 border rounded-md text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-                    <label for="start" class="block text-gray-700 text-sm font-bold mb-2">Hora de Inicio:</label>
+                    <p-datepicker inputId="start" formControlName="start" [timeOnly]="true" class="form-input-time" />
+                    <label for="start" class="form-label">Hora de Inicio:</label>
                 </p-floatlabel>
             </div>
-            <div class="flex-1">
+            <div class="flex-1 form-group">
                 <p-floatlabel>
-                    <p-datepicker inputId="end" formControlName="end" [timeOnly]="true" class="w-full px-3 py-2 border rounded-md text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-                    <label for="end" class="block text-gray-700 text-sm font-bold mb-2">Hora de Inicio:</label>
+                    <p-datepicker inputId="end" formControlName="end" [timeOnly]="true" class="form-input-time" />
+                    <label for="end" class="form-label">Hora de Fin:</label> 
                 </p-floatlabel>
             </div>
         </div>
 
-        <button pButton type="submit" label="Crear Evento" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-6"></button>
+        <button type="submit" label="Crear Evento" class="btn-primary">Editar Evento</button>
     </form>
-
 </div>

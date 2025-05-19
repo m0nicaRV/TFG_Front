@@ -1,42 +1,64 @@
-.metodo-rubio {
-    @apply flex flex-col items-center justify-center w-full h-full bg-white;
+.rubio-page-wrapper {
+  @apply bg-slate-50 font-sans text-slate-700 py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden;
 }
 
 
-.metodo-rubio h1{
-    @apply lg:text-5xl py-4 border-b-4  text-xl my-2 text-center w-1/2 mx-auto
+.rubio-background-deco {
+  @apply absolute rounded-full -z-0 opacity-15 lg:opacity-20 pointer-events-none;
 }
-.metodo-rubio p{
-    @apply text-lg w-full m-5
+.rubio-bg-circle-1 {
+  @apply w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 bg-sky-200 -top-10 -left-20;
 }
-
-.metodo-rubio .left {
-    @apply  w-full p-4  gap-8 h-full flex justify-center pb-0;
+.rubio-bg-circle-2 {
+  @apply w-56 h-56 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-teal-200 -bottom-20 -right-24;
 }
-.metodo-rubio .left .texto {
-    @apply w-3/5
-}
-
-.metodo-rubio .left img , .metodo-rubio .right img{
-    @apply  !m-0   rounded-full
-}
-
-.metodo-rubio .imagen {
-    @apply rounded-full  border-[15px]  py-12 border-[#BDCBD3] px-1 h-fit;
-}
-
-.metodo-rubio .right {
-    @apply  right-0      h-full flex  flex-row-reverse justify-center;
+.rubio-bg-circle-3 {
+  @apply w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 bg-pink-200 top-1/3 right-1/4 hidden md:block; 
 }
 
 
-.metodo-rubio .circle{
-   @apply  bg-[#BDCBD3] rounded-full absolute 
+.rubio-main-heading {
+  @apply text-3xl sm:text-4xl lg:text-5xl font-bold text-center text-sky-700 mb-10 lg:mb-16 pb-3 border-b-2 border-sky-200 w-fit mx-auto relative z-10; 
+}
 
+.rubio-section-layout {
+  @apply flex flex-col lg:flex-row items-center w-full md:w-4/5 max-w-5xl mx-auto my-10 lg:my-16 gap-8 lg:gap-12 xl:gap-16 relative z-10; 
 }
-.metodo-rubio  .uno{
-    @apply w-16 h-16  ml-[11%] mt-[-5%] z-0
+
+.rubio-section-layout--image-right .rubio-text-content-area {
+  @apply lg:order-1;
 }
-.metodo-rubio .dos{
-    @apply w-24 h-24  ml-[10%] mt-[-13%] z-0
+.rubio-section-layout--image-right .rubio-visual-content-area {
+  @apply lg:order-2;
 }
+
+.rubio-section-layout--image-left .rubio-text-content-area {
+  @apply lg:order-2;
+}
+.rubio-section-layout--image-left .rubio-visual-content-area {
+  @apply lg:order-1;
+}
+
+.rubio-text-content-area {
+  @apply w-full lg:w-1/2 xl:w-3/5 space-y-5 lg:space-y-6 text-center lg:text-left;
+}
+
+.rubio-paragraph-style {
+  @apply text-slate-600 text-base sm:text-lg leading-relaxed;
+}
+
+.rubio-visual-content-area {
+  @apply w-full md:w-3/4 lg:w-1/2 xl:w-2/5 flex justify-center items-center p-4;
+}
+
+.rubio-image-presentation {
+
+  @apply relative w-60 h-60 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80;
+}
+
+
+
+.rubio-image-photo {
+  @apply w-full h-full rounded-full object-cover shadow-xl border-4 border-white; 
+}
+

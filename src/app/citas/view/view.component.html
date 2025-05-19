@@ -1,37 +1,45 @@
-<div>
-    <h1> MIS CITAS </h1>
+<div class="my-appointments-page">
+  <h1 class="my-appointments-title">MIS CITAS</h1>
 
-
-    @if (pendientes.length >= 1){
-    <div class="caja">
-        <div class="citas">
-            <h2>Pendientes</h2>
-            @for (cita of pendientes; track $index){
-                <p><i class="pi pi-clock mb-2"></i>{{cita.inicio}}-{{cita.fin}}  {{cita.fecha }} -> {{cita.servicio}} </p>
-            }
-        </div>
+  @if (pendientes.length >= 1){
+    <div class="appointment-group appointment-group--pending">
+      <div class="appointment-list">
+        <h2 class="appointment-list__title">Pendientes</h2>
+        @for (cita of pendientes; track $index){
+          <div class="appointment-list__item">
+            <i class="pi pi-clock appointment-item__icon"></i>
+            <span class="appointment-item__details">{{cita.inicio}}-{{cita.fin}} {{cita.fecha}} -> {{cita.servicio}}</span>
+          </div>
+        }
+      </div>
     </div>
-    }
+  }
 
-    @if (aceptadas.length >= 1){
-        <div class="caja">
-            <div class="citas">
-                <h2>Aceptadas</h2>
-                @for (cita of aceptadas; track $index){
-                    <p><i class="pi pi-clock"></i>{{cita.inicio}}-{{cita.fin}}  {{cita.fecha }} -> {{cita.servicio}} </p>
-                }
-            </div>
-        </div>
-    }
+  @if (aceptadas.length >= 1){
+    <div class="appointment-group appointment-group--accepted">
+      <div class="appointment-list">
+        <h2 class="appointment-list__title">Aceptadas</h2>
+        @for (cita of aceptadas; track $index){
+          <div class="appointment-list__item">
+            <i class="pi pi-clock appointment-item__icon"></i>
+            <span class="appointment-item__details">{{cita.inicio}}-{{cita.fin}} {{cita.fecha}} -> {{cita.servicio}}</span>
+          </div>
+        }
+      </div>
+    </div>
+  }
 
-    @if (anteriores.length >= 1){
-        <div class="caja">
-            <div class="citas">
-                <h2>Anteriores citas</h2>
-                @for (cita of anteriores; track $index){
-                    <p><i class="pi pi-clock mb-[-6px]"></i>{{cita.inicio}}-{{cita.fin}}  {{cita.fecha }} -> {{cita.servicio}} </p>
-                }
-            </div>
-        </div>
-    }
+  @if (anteriores.length >= 1){
+    <div class="appointment-group appointment-group--past">
+      <div class="appointment-list">
+        <h2 class="appointment-list__title">Citas Anteriores</h2>
+        @for (cita of anteriores; track $index){
+          <div class="appointment-list__item">
+            <i class="pi pi-clock appointment-item__icon"></i>
+            <span class="appointment-item__details">{{cita.inicio}}-{{cita.fin}} {{cita.fecha}} -> {{cita.servicio}}</span>
+          </div>
+        }
+      </div>
+    </div>
+  }
 </div>

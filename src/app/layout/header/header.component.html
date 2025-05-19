@@ -1,34 +1,39 @@
-<header [ngClass]="['flex flex-row justify-between p-8 items-center bg-[#BDCBD3]']">
-     <div>
-        <a href="/" ><img src="assets/logo.jpeg" alt="logo" [ngClass]="['w-32 rounded-full']"></a>
+<header class="app-header">
+    <div class="app-header-logo-link-container">
+        <a href="/" class="app-header-logo-link">
+            <img src="assets/logo.jpeg" alt="logo" class="app-header-logo-image">
+        </a>
     </div>
-    <div >
-        <ul [ngClass]="['flex flex-row gap-8 justify-end lg:text-2xl text-lg z-50 ']">
-            <li> <a [routerLink]="'/servicios'">Servicios</a></li>
-            <li><a [routerLink]="'/contactos'">Conocenos</a></li>
-            <li> <a [routerLink]="'/noticias'"> Noticias </a></li>
-            @if (!isLoggedIn){
-                <li><a [routerLink]="'/register'">Registrate</a></li>
-                <li><a [routerLink]="'login'">Accede </a></li>
-            }@else {
-                <li [ngClass]="['w-28']"></li>
-                <li [ngClass]="['absolute p-4 bg-[#BDCBD3] rounded-full top-0 right-4 z-10']" (click)="toggleMenu()"> <i class="pi pi-user" style="font-size:80px;"[ngClass]="['text-white text-[2.5rem] border-4 p-4 rounded-full border-white']"></i> </li>
-                @if (isMenuOpen){               
-                    <ul [ngClass]="['bg-[#BDCBD3] absolute  p-4 rounded-lg mt-16 right-0  z-[1] w-2/12 pt-11']">
-                        @if (isAdmin){
-                            <li><a [routerLink]="'/admin/calendar'">Calendario</a></li>
-                            <li><a [routerLink]="'servicios/create'">Crear</a></li>
-                        }@else{                        
-                            <li><a [routerLink]="'/citas'">Mis citas</a></li>
-                            <li><a [routerLink]="'/citas/pedir'">Pedir cita</a></li>
-                            <li><a [routerLink]="'#'">Mis datos</a></li>  
-                            <li><a [routerLink]="'#'">Configuracion</a></li>
-                        }
-                        <li> 
-                            <button type="button" (click)="signOut()" class="dropdown-item link-danger border-0 bg-transparent">
-                                Cerrar sesion
-                            </button>
-                        </li>
+    <div class="app-header-nav-container">
+        <ul class="app-header-nav-list items-end">
+            <li><a [routerLink]="'/servicios'" class="app-header-nav-link">Servicios</a></li>
+            <li><a [routerLink]="'/contactos'" class="app-header-nav-link">Conocenos</a></li>
+            <li><a [routerLink]="'/noticias'" class="app-header-nav-link">Noticias</a></li>
+            @if (!isLoggedIn) {
+                <li><a [routerLink]="'/register'" class="app-header-nav-link">Registrate</a></li>
+                <li><a [routerLink]="'login'" class="app-header-nav-link">Accede</a></li>
+            } @else {
+                <li class="app-header-user-icon-wrapper relative ml-4 items-start" (click)="toggleMenu()">
+                    <i class="pi pi-user app-header-user-icon"></i>
+                </li>
+                @if (isMenuOpen) {
+                    <ul class="app-header-user-menu">
+                        <div class="app-header-user-menu-content-wrapper">
+                            @if (isAdmin) {
+                                <li class="app-header-user-menu-item"><a [routerLink]="'/admin/calendar'">Calendario</a></li>
+                                <li class="app-header-user-menu-item"><a [routerLink]="'servicios/create'">Crear</a></li>
+                            } @else {
+                                <li class="app-header-user-menu-item"><a [routerLink]="'/citas'">Mis citas</a></li>
+                                <li class="app-header-user-menu-item"><a [routerLink]="'/citas/pedir'">Pedir cita</a></li>
+                                <li class="app-header-user-menu-item"><a [routerLink]="'#'">Mis datos</a></li>
+                                <li class="app-header-user-menu-item"><a [routerLink]="'#'">Configuracion</a></li>
+                            }
+                            <li class="app-header-user-menu-item">
+                                <button type="button" (click)="signOut()" class="app-header-user-menu-button-logout">
+                                    Cerrar sesion
+                                </button>
+                            </li>
+                        </div>
                     </ul>
                 }
             }
@@ -36,11 +41,10 @@
     </div>
 </header>
 
-@if (isLoading){
-    <div class="d-flex justify-content-center mt-5">
-        <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
+@if (isLoading) {
+    <div class="app-loading-overlay">
+        <div class="app-loading-spinner" role="status">
+            <span class="app-visually-hidden">Loading...</span>
+        </div>
     </div>
 }
-

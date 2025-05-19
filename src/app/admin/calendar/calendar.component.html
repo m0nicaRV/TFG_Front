@@ -28,7 +28,7 @@
             class="bg-[#BDCBD3] text-white font-bold py-2 px-4 rounded-full " (click)="visibleEvento = true"> Crear
             <i class="pi pi-plus items-center mx-2"></i>  
           </button>
-          <p-dialog [modal]="true" [header]="'Crear Evento'" [(visible)]="visibleEvento" styleClass="w-1/2">
+          <p-dialog [modal]="true" [header]="'Crear Evento'" [(visible)]="visibleEvento" styleClass="w-11/12 md:w-4/5 lg:w-3/5">
             <app-crear></app-crear>
             <div class="bg-white px-6 py-4 flex justify-end border-t border-gray-200">
               <button (click)="visibleEvento= false " class="ml-2 px-4 py-2 rounded border border-gray-300 text-gray-700 hover:bg-gray-100 font-semibold text-sm">

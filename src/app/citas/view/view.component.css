@@ -1,12 +1,56 @@
-.caja{
-    @apply bg-[#BDCBD3] flex flex-col w-3/5 rounded-3xl z-0  p-6 mx-auto  my-6  
+.my-appointments-page {
+  @apply w-full min-h-screen bg-slate-100 py-8 sm:py-12 px-4;
 }
-.citas{
-    @apply bg-white rounded-3xl p-4  flex flex-col 
+
+.my-appointments-title {
+  @apply text-3xl sm:text-4xl lg:text-5xl font-bold text-center text-sky-800 mb-10 lg:mb-14 pb-4 border-b-2 border-sky-200 w-fit mx-auto;
 }
-.citas h2 {
-    @apply text-2xl font-bold mb-3
+
+.appointment-group { 
+  @apply bg-[#E0EAF0] flex flex-col w-full max-w-2xl lg:max-w-3xl rounded-2xl shadow-lg p-5 sm:p-6 mx-auto my-6 lg:my-8;
 }
-.citas p {
-    @apply flex flex-row gap-4 p-3 px-5 items-baseline
+
+.appointment-list { 
+  @apply bg-white rounded-xl p-4 sm:p-6 flex flex-col gap-3 sm:gap-4 shadow-inner;
+}
+
+.appointment-list__title { 
+  @apply text-xl sm:text-2xl font-semibold text-slate-700 mb-3 sm:mb-4 pb-3 border-b border-slate-200;
+}
+
+.appointment-list__item { 
+  @apply flex flex-row items-start gap-3 sm:gap-4 p-3 rounded-lg hover:bg-slate-50 transition-colors duration-150 ease-in-out;
+}
+
+.appointment-item__icon {
+  @apply text-sky-600 text-lg sm:text-xl mt-[3px] shrink-0;
+}
+
+.appointment-item__details {
+  @apply text-slate-600 text-sm sm:text-base leading-snug;
+}
+
+
+.appointment-group--pending .appointment-list__title {
+  @apply text-amber-700 border-amber-300;
+}
+.appointment-group--pending .appointment-item__icon {
+  @apply text-amber-600;
+}
+
+.appointment-group--accepted .appointment-list__title {
+  @apply text-green-700 border-green-300;
+}
+.appointment-group--accepted .appointment-item__icon {
+  @apply text-green-600;
+}
+
+.appointment-group--past .appointment-list__title {
+  @apply text-slate-500 border-slate-300;
+}
+.appointment-group--past .appointment-item__icon {
+  @apply text-slate-400;
+}
+.appointment-group--past .appointment-item__details {
+  @apply text-slate-500 opacity-90;
 }

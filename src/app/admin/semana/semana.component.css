@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .calendar-grid {
+    @apply grid grid-cols-7 gap-1 sm:gap-1.5 md:gap-2;
+  }
+
+
+
+  .calendar-day-cell {
+    @apply border border-gray-300 rounded-lg 
+           overflow-hidden 
+           p-1.5 md:p-2 bg-white hover:bg-gray-50 
+           cursor-pointer transition-all duration-150 ease-in-out 
+           flex flex-col my-1 shadow-sm hover:shadow-md;
+  }
+
+  .week-day-cell { 
+    @apply h-48 sm:h-56 md:h-60 lg:h-64; 
+  }
+
+  .calendar-day-number {
+    @apply text-xs sm:text-sm font-medium text-gray-600 mb-1 ;
+  }
+
+  .calendar-events-container {
+    @apply flex-grow overflow-y-auto -mr-1 pr-1; 
+  }
+
+  .calendar-event-item {
+    @apply bg-blue-100 text-blue-800 text-[10px] leading-tight sm:text-xs rounded 
+           px-1.5 py-1 mb-1 truncate relative;
+  }
+
+  .calendar-event-time {
+    @apply font-semibold block sm:inline; 
+  }
+
+  .calendar-event-summary {
+    @apply block sm:inline;
+  }
+
+  .calendar-no-events-text {
+    @apply text-xs sm:text-sm text-gray-400 italic 
+           flex-grow flex items-center justify-center h-full; 
+  }
+
+
+  .dialog-footer {
+    @apply flex justify-end items-center pt-3 mt-2 border-t border-gray-200;
+  }
+
+  .dialog-close-button.p-button-text {
+    @apply text-gray-700 hover:bg-gray-100 focus:ring-gray-300;
+  }
+}
+
+
+:host ::ng-deep .p-dialog.event-details-dialog .p-dialog-header {
+  @apply bg-gray-50 px-4 py-3 text-lg font-semibold text-gray-800 rounded-t-lg;
+}
+:host ::ng-deep .p-dialog.event-details-dialog .p-dialog-header .p-dialog-header-icon {
+  @apply text-gray-600 hover:text-gray-800;
+}
+
+:host ::ng-deep .p-dialog.event-details-dialog .p-dialog-content {
+  @apply p-4 bg-white; 
+}
+
+:host ::ng-deep .p-dialog.event-details-dialog .p-dialog-footer {
+  @apply px-4 pb-3 pt-3 bg-gray-50 rounded-b-lg border-t border-gray-200; 
+}
