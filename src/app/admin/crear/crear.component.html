@@ -3,7 +3,7 @@
     <form (ngSubmit)="createCalendarEvent()" [formGroup]="eventForm">
         <div class="form-group">
             <label for="summary" class="form-label">Nombre y apellido:</label>
-               <p-autocomplete formControlName="summary" [suggestions]="selectUser" (completeMethod)="search($event)" optionLabel="name">
+               <p-autocomplete formControlName="summary" [suggestions]="filterUser" (completeMethod)="search($event)" optionLabel="name">
                 <ng-template let-user #item>
                      <div class="flex items-center gap-2">{{user.name}}</div>
                 </ng-template>

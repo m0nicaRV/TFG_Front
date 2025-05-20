@@ -1,4 +1,5 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Inject, Input, Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 import { CalendarService } from '../calendar.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -35,8 +36,9 @@ import {format } from 'date-fns';
   styleUrl: './crear.component.css',
 })
 export class CrearComponent {
-  
+  @Output() formSubmitted = new EventEmitter<any>();
   @Input() cita : Cita | null = null;
+  filterUser: User[] = [];
   eventForm!: FormGroup;
   users: User[] = [];
   selectUser :User[] = [];
@@ -106,6 +108,7 @@ export class CrearComponent {
       this.calendarService.aceptEvent(this.cita.id, eventApi).subscribe(
         (response) => {
           console.log('Evento aceptado:', response);
+
         },
         (error) => {
           console.error('Error al aceptar el evento:', error);
@@ -120,6 +123,7 @@ export class CrearComponent {
     this.calendarService.createEvent(event).subscribe(
       (response) => {
         console.log('Evento creado:', response);
+        this.formSubmitted.emit();
       },
       (error) => {
         console.error('Error al crear el evento:', error);
@@ -136,13 +140,16 @@ export class CrearComponent {
 
 
   search(event: any) {
-   this.selectUser=[]
+   let users : any=[]
     const query = event.query;
     for(let i = 0; i < this.users.length; i++) {
       const user = this.users[i];
-      if (user.name.toLowerCase().includes(query.toLowerCase())) {
-        this.selectUser.push(user);
+      if (user.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
+        console.log()
+        users.push(user);
       }
     }
+    this.filterUser = users;
+    console.log('Usuariosfiltrados :', this.filterUser);
   }
 }

@@ -1,0 +1,70 @@
+
+.form-container {
+    @apply bg-[#BDCBD3] flex flex-col justify-center w-11/12 md:w-4/5 rounded-3xl z-0 p-6 mx-auto gap-10 my-6;
+  }
+  
+
+  .form-header {
+    @apply bg-white rounded-3xl p-6 flex flex-col;
+  }
+  
+  .form-title {
+    @apply text-2xl text-gray-800;
+  }
+  
+
+  .form-content {
+    @apply flex flex-col gap-6;
+  }
+  
+
+  .form-field {
+    @apply flex flex-col gap-2;
+  }
+  
+  .form-label {
+    @apply block text-gray-700 font-bold;
+  }
+  
+
+  .form-input {
+    @apply w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+  }
+  
+
+  .form-textarea {
+    @apply resize-y; 
+  }
+  
+
+  .form-file-input {
+    @apply w-full text-gray-700 border border-gray-300 rounded file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent cursor-pointer;
+  }
+  
+
+  .input-invalid {
+    @apply border-red-500;
+  }
+  
+
+  .validation-error {
+    @apply text-red-500 text-sm;
+  }
+  
+
+  .submit-button {
+    @apply w-full bg-[#BDCBD3] hover:bg-[#aab9c2] text-gray-800 font-bold py-3 px-4 rounded focus:outline-none  transition duration-200 ease-in-out flex items-center justify-center gap-2;
+  }
+  
+  .submit-button:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+  
+
+  .alert-success {
+    @apply mt-4 p-4 bg-green-100 text-green-800 border border-green-400 rounded;
+  }
+  
+  .alert-error {
+    @apply mt-4 p-4 bg-red-100 text-red-800 border border-red-400 rounded;
+  }

@@ -62,12 +62,10 @@ export class CalendarComponent {
   }
 
   
-
-    ngOnInit() {
-      this.dataPick();
+    getCitas(){
       this.citaService.index().subscribe(
         (data: any) => {
-          data.forEach((cita: Cita) => {
+            data.forEach((cita: Cita) => {
             cita.visible = false;
           });
           this.citas = data;
@@ -78,6 +76,16 @@ export class CalendarComponent {
           console.error('Error fetching citas:', error);
         }
       );
+      
+    }
+    reload(){
+      this.dataPick();
+      this.getCitas();
+    }
+
+    ngOnInit() {
+      this.reload();
+
       this.googleCalendarService.init();
     }
 

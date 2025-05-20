@@ -29,7 +29,7 @@
             <i class="pi pi-plus items-center mx-2"></i>  
           </button>
           <p-dialog [modal]="true" [header]="'Crear Evento'" [(visible)]="visibleEvento" styleClass="w-11/12 md:w-4/5 lg:w-3/5">
-            <app-crear></app-crear>
+            <app-crear (formSubmitted)="visibleEvento=false; reload()" ></app-crear>
             <div class="bg-white px-6 py-4 flex justify-end border-t border-gray-200">
               <button (click)="visibleEvento= false " class="ml-2 px-4 py-2 rounded border border-gray-300 text-gray-700 hover:bg-gray-100 font-semibold text-sm">
                   Cerrar
@@ -153,7 +153,7 @@
     </div>
     <p-dialog [(visible)]="cita.visible" [modal]="true" [header]="'Añadir cita'" [style]="{width: '90vw', maxWidth: '600px'}" appendTo="body" styleClass="event-details-dialog">
       <ng-template pTemplate="content">
-        <app-crear [cita]="cita"></app-crear>
+        <app-crear [cita]="cita" (formSubmitted)="toggleEvent(cita); reload()"></app-crear>
       </ng-template>
       <ng-template pTemplate="footer">
         <div class="dialog-footer">
