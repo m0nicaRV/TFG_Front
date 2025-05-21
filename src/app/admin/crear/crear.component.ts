@@ -15,6 +15,7 @@ import { User } from '../../models/user';
 import { AutoComplete } from 'primeng/autocomplete';
 import { Cita } from '../../models/cita';
 import {format } from 'date-fns';
+import { dateValidator } from '../../validators/date';
 
 
 @Component({
@@ -65,6 +66,8 @@ export class CrearComponent {
       date:new FormControl('', [Validators.required]),
       start: new FormControl('', [Validators.required]),
       end: new FormControl('', [Validators.required]),
+    },{
+      validators: dateValidator('start', 'end'),
     });
 
     if(this.cita !== null){
@@ -108,6 +111,7 @@ export class CrearComponent {
       this.calendarService.aceptEvent(this.cita.id, eventApi).subscribe(
         (response) => {
           console.log('Evento aceptado:', response);
+        
 
         },
         (error) => {
@@ -122,7 +126,8 @@ export class CrearComponent {
 
     this.calendarService.createEvent(event).subscribe(
       (response) => {
-        console.log('Evento creado:', response);
+        console.log('Evento creado:', response); 
+         this.eventForm.reset();
         this.formSubmitted.emit();
       },
       (error) => {

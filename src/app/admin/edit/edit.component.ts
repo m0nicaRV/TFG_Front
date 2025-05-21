@@ -6,6 +6,7 @@ import { FloatLabel } from 'primeng/floatlabel';
 import { CommonModule } from '@angular/common';
 import { DayComponent } from '../day/day.component';
 import { CalendarService } from '../calendar.service';
+import { dateValidator } from '../../validators/date';
 
 @Component({
   selector: 'app-edit',
@@ -26,6 +27,8 @@ export class EditComponent {
       date: new FormControl('', [Validators.required]),
       start: new FormControl('', [Validators.required]),
       end: new FormControl('', [Validators.required]),
+    },{
+      validators: [dateValidator('start', 'end')]
     });
   }
 

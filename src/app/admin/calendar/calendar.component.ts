@@ -84,9 +84,9 @@ export class CalendarComponent {
     }
 
     ngOnInit() {
+     this.googleCalendarService.init();
       this.reload();
-
-      this.googleCalendarService.init();
+      
     }
 
   public signOut(){

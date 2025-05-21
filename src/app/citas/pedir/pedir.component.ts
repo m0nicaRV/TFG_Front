@@ -14,6 +14,7 @@ import { formatDate } from '@angular/common';
 import { CitaService } from '../cita.service';
 import { Router } from '@angular/router';
 import { AuthStateService } from '../../shared/auth-state.service';
+import { dateValidator } from '../../validators/date';
 
 
 
@@ -58,6 +59,8 @@ export class PedirComponent {
             inicio: [''],
             fin: [''],
             semana: [''],
+          },{
+            validators: [Validators.required],
           }),
         ]),
     });
