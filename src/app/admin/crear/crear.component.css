@@ -3,6 +3,15 @@
 @tailwind utilities;
 
 @layer components {
+    .form-error-message { 
+  @apply flex items-start gap-3 p-3 sm:p-4 bg-red-50 border-l-4 border-red-500 text-red-700 rounded-md text-sm sm:text-base shadow-sm my-2;
+}
+.form-error-message__icon {
+  @apply text-red-500 text-xl sm:text-2xl mt-0.5 shrink-0; 
+}
+.form-error-message__text strong {
+  @apply font-medium;
+}
     .form-group {
         @apply mb-4;
     }

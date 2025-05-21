@@ -21,7 +21,7 @@ export class HeaderComponent {
   isMenuOpen = false;
   isLoggedIn!:boolean;
   isAdmin:boolean = false;
-  isLoading:boolean = true;
+  isLoading:boolean = false;
   user!: User ;
   constructor(private auth: AuthStateService, private router: Router, private token: TokenService, private authService:AuthService){ }
 

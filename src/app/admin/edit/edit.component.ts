@@ -16,6 +16,7 @@ import { dateValidator } from '../../validators/date';
 })
 export class EditComponent {
   @Input() eventId!: string;
+  citaId!: number;
 
   eventForm!: FormGroup;
   constructor(
@@ -44,12 +45,13 @@ export class EditComponent {
         start: new Date(event.start.dateTime) ,
         end: new Date(event.end.dateTime),
       });
+      this.citaId = event.extendedProperties.private.citaId;
     })
   }
   
 
   EditCalendarEvent() {
-      const dateValue: Date = this.eventForm.get('date')?.value;
+    const dateValue: Date = this.eventForm.get('date')?.value;
     const startTimeString: string = this.eventForm.get('start')?.value;
     const endTimeString: string = this.eventForm.get('end')?.value;
      
@@ -71,6 +73,11 @@ export class EditComponent {
         timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       },
     };
+    if(this.citaId !==0){
+
+    
+
+    }
 
     this.calendarService.updateEvent(this.eventId,event).subscribe(
       (response) => {

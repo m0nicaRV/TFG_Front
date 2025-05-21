@@ -100,9 +100,15 @@ export class CrearComponent {
         dateTime: endDateTime,
         timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       },
+       extendsProperties: {
+              private: {
+                cita_id: 0,
+              }
+        }
     };
     console.log('fecha_inicio:', startDateTime);
     console.log('fecha_fin:', endDateTime);
+
     if(this.cita !== null){
       const eventApi = {
         fecha_inicio: format(startDateTime, 'yyyy-MM-dd HH:mm:ss'),
@@ -111,19 +117,20 @@ export class CrearComponent {
       this.calendarService.aceptEvent(this.cita.id, eventApi).subscribe(
         (response) => {
           console.log('Evento aceptado:', response);
-        
-
+          if(this.cita?.id){
+             event.extendsProperties.private.cita_id = this.cita.id;
+          }
+          this.eventCalendar(event);
         },
         (error) => {
           console.error('Error al aceptar el evento:', error);
-        }
-      );
-
-
-
-
+        });
+    }else{
+      this.eventCalendar(event);
     }
+  }
 
+  eventCalendar(event : any){
     this.calendarService.createEvent(event).subscribe(
       (response) => {
         console.log('Evento creado:', response); 
@@ -134,13 +141,8 @@ export class CrearComponent {
         console.error('Error al crear el evento:', error);
       }
     );
-
-    this.cerrar();
   }
-
-  cerrar() {
-    
-  }
+  
   showDialog() {}
 
 

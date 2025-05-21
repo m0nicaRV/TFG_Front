@@ -1,5 +1,14 @@
 <div class="bg-gray-200 p-6 rounded-lg shadow-md md:w-4/5 sm:w-full mx-auto mt-10">
     <h2 class="md:text-2xl sm:text-xl  font-bold text-center mb-6 text-gray-800">Crear Nuevo Evento</h2>
+
+
+<div *ngFor="let error of eventForm.errors | keyvalue" class="form-error-message" role="alert">
+  <i class="pi pi-exclamation-circle form-error-message__icon"></i>
+  <span class="form-error-message__text">{{error.value}}.</span>
+</div>
+    
+  
+
     <form (ngSubmit)="createCalendarEvent()" [formGroup]="eventForm">
         <div class="form-group">
             <label for="summary" class="form-label">Nombre y apellido:</label>
@@ -12,10 +21,10 @@
                         <p-button label="Crear nuevo usuario"fluid severity="secondary" text size="small" icon="pi pi-plus" (click)="showDialog()" class="w-full"></p-button>
                     </div>
                 </ng-template>
-               
-
                </p-autocomplete>
         </div>
+
+
 
         <div class="form-group">
             <label for="date" class="form-label">Fecha:</label>
@@ -37,6 +46,6 @@
             </div>
         </div>
 
-        <button pButton type="submit" label="Crear Evento" class="btn-primary"></button>
+        <button pButton type="submit" label="Crear Evento" class="btn-primary"  [disabled]="eventForm.invalid" ></button>
     </form>
 </div>

@@ -5,6 +5,10 @@
     <h2 class="appointment-card-title">Completa tus datos</h2>
     <p class="appointment-card-subtitle">Rellena el formulario y nos pondremos en contacto contigo para confirmar la cita.</p>
   </div>
+  <div *ngFor="let error of forms.errors | keyvalue" class="form-error-message" role="alert">
+  <i class="pi pi-exclamation-circle form-error-message__icon"></i>
+  <span class="form-error-message__text">{{error.value}}.</span>
+</div>
 
   <form [formGroup]="forms" class="appointment-main-form">
     <div class="form-main-column">
@@ -50,5 +54,5 @@
     </div>
  
     </form> 
-    <button pButton type="button" label="Submit" (click)="onSubmit()" Class="submit-button-styling">Enviar  <i class="pi pi-check"></i></button>
+    <button pButton type="button" label="Submit" (click)="onSubmit()" Class="submit-button-styling"  [disabled]="forms.invalid" >Enviar  <i class="pi pi-check"></i></button>
 </div>

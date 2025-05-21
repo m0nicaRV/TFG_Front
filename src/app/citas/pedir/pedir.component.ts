@@ -60,7 +60,7 @@ export class PedirComponent {
             fin: [''],
             semana: [''],
           },{
-            validators: [Validators.required],
+            validators: dateValidator('inicio', 'fin'),
           }),
         ]),
     });
