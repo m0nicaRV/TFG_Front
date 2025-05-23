@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs'; 
-import { TokenService } from './token.service';
-import { AuthService } from './auth.service';
+import { TokenService } from './token.service'
+import { AuthService } from './auth.service'
 import { Router } from '@angular/router';
 import { is } from 'date-fns/locale';
 

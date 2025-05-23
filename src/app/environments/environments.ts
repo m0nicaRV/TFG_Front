@@ -10,7 +10,7 @@ export const configuracion={
   email: 'm@gmail.com',
   titulo: 'Gestor de Eventos',
   instagram: 'https://www.instagram.com/jesus_ortiz_/',
-  logo: 'hola',
+  facebook: 'https://www.facebook.com/jesus.ortiz.507027',
 }
 export const environment = {
   url_host:'http://127.0.0.1:8000/',

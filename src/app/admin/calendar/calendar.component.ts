@@ -1,7 +1,7 @@
 import { Component, OnInit , OnDestroy} from '@angular/core';
-import { CitaService } from '../../citas/cita.service';
+import { CitaService } from '../../service/cita.service';
 import {Cita} from '../../models/cita';
-import { CalendarService } from '../calendar.service';
+import { CalendarService } from '../../service/calendar.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { DatePickerModule } from 'primeng/datepicker';
@@ -14,7 +14,7 @@ import { addDays } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { CrearComponent } from '../crear/crear.component';
 import { DialogModule } from 'primeng/dialog';
-import { AuthStateService } from '../../shared/auth-state.service';
+import { AuthStateService } from '../../service/auth-state.service';
 
 
 

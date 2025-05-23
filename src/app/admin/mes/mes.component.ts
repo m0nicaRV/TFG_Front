@@ -1,7 +1,7 @@
 import { Component, SimpleChanges } from '@angular/core';
 import { Input } from '@angular/core';
 import { endOfMonth, getISOWeek, startOfISOWeek, startOfMonth } from 'date-fns';
-import { CalendarService } from '../calendar.service';
+import { CalendarService } from '../../service/calendar.service';
 import { DatePickerModule } from 'primeng/datepicker';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -90,8 +90,8 @@ export class MesComponent {
 
 
   toggleDia(dia: any, open: boolean) {
-     this.getEvents();
-      dia.visible = open;
+    this.getEvents();
+    dia.visible = open;
   }
 
 

@@ -3,9 +3,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { HttpClient } from '@angular/common/http'; 
 import { Servicio } from '../../models/servicio'; 
 import { CommonModule } from '@angular/common';
-import { ServicioService } from '../servicio.service';
+import { ServicioService } from '../../service/servicio.service';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthStateService } from '../../shared/auth-state.service';
+import { AuthStateService } from '../../service/auth-state.service';
 
 @Component({
   selector: 'app-create',

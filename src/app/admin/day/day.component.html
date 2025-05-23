@@ -6,7 +6,7 @@
         <div class="bg-blue-100 text-blue-700 text-xs rounded px-1.5 py-0.5 mb-2 truncate !p-1 flex flex-row gap-5  ">
             <span class="w-full mx-4">{{event.start.dateTime | date: 'HH:mm'}} - {{event.end.dateTime | date: 'HH:mm'}} &nbsp;-> {{event.summary}}</span>
             <div class="flex-row justify-end mx-4 flex gap-4 w-full">
-                <button  (click)="eliminarEvento(event.id)" class="float-right">
+                <button  (click)="eliminarEvento(event)" class="float-right">
                 <i class="pi pi-trash text-gray-700"></i>
                 </button>
               

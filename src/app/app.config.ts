@@ -2,7 +2,7 @@ import { ApplicationConfig, provideZoneChangeDetection, LOCALE_ID } from '@angul
 import { provideRouter } from '@angular/router';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { CommonModule, registerLocaleData } from '@angular/common';
-import { CalendarInterceptor } from './admin/calendar.interceptor';
+import { CalendarInterceptor } from './service/interceptor/calendar.interceptor';
 
 import localeEs from '@angular/common/locales/es';
 
@@ -11,7 +11,7 @@ registerLocaleData(localeEs, 'es');
 import { providePrimeNG } from 'primeng/config';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './shared/auth-interceptor.service';
+import { AuthInterceptor } from './service/interceptor/auth-interceptor.service';
 import { provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
 
 import Aura from '@primeng/themes/aura';

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
-import { TokenService } from './token.service';
+import { TokenService } from '../token.service'
 import { Observable, catchError, throwError } from 'rxjs';
 import { Router } from '@angular/router';
-import {IGNORE_AUTH_INTERCEPTOR} from '../environments/environments';
+import {IGNORE_AUTH_INTERCEPTOR} from '../../environments/environments';
 
 @Injectable({
   providedIn: 'root'

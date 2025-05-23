@@ -124,6 +124,9 @@ export class CalendarService {
     return this.http.post('https://www.googleapis.com/gmail/v1/users/me/messages/send', mail);
   }
 
+  eliminarCita(citaId: number): Observable<any> {
+    return this.http.delete(`${environment.url_host}api/citas/eliminar/${citaId}`);
+  }
 
 
 

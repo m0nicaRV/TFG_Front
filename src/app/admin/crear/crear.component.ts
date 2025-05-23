@@ -1,11 +1,11 @@
 import { Component, Inject, Input, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
-import { CalendarService } from '../calendar.service';
+import { CalendarService } from '../../service/calendar.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FormControl } from '@angular/forms';
-import { AuthService } from '../../shared/auth.service';
+import { AuthService } from '../../service/auth.service';
 import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
 import { ButtonModule } from 'primeng/button';
@@ -100,7 +100,7 @@ export class CrearComponent {
         dateTime: endDateTime,
         timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       },
-       extendsProperties: {
+         extendedProperties: {
               private: {
                 cita_id: 0,
               }
@@ -118,7 +118,7 @@ export class CrearComponent {
         (response) => {
           console.log('Evento aceptado:', response);
           if(this.cita?.id){
-             event.extendsProperties.private.cita_id = this.cita.id;
+             event.extendedProperties.private.cita_id = this.cita.id;
           }
           this.eventCalendar(event);
         },
@@ -147,16 +147,13 @@ export class CrearComponent {
 
 
   search(event: any) {
-   let users : any=[]
+    let users : any=[]
     const query = event.query;
-    for(let i = 0; i < this.users.length; i++) {
-      const user = this.users[i];
-      if (user.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-        console.log()
-        users.push(user);
-      }
-    }
-    this.filterUser = users;
+    this.filterUser = this.users.filter((user: any) => {
+    return user && user.name && user.name.toLowerCase().includes(query.toLowerCase());
+  });
+    
     console.log('Usuariosfiltrados :', this.filterUser);
   }
+
 }

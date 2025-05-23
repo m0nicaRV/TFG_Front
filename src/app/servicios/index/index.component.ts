@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ServicioService } from '../servicio.service';
+import { ServicioService } from '../../service/servicio.service';
 import {Servicio} from '../../models/servicio';
 import { environment } from '../../environments/environments';
 

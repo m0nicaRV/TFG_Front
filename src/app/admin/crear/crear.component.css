@@ -38,7 +38,7 @@
     }
 }
 
-/* Estilos adicionales para asegurar que p-datepicker se vea bien con Tailwind */
+
 :host ::ng-deep .p-datepicker {
     width: 100%;
 }
@@ -53,4 +53,49 @@
 
 :host ::ng-deep .p-floatlabel > label {
     @apply text-gray-700;
+}
+
+/* En tu archivo styles.css (recomendado para estilos de overlays) */
+
+/* Contenedor principal del calendario popup */
+:host ::ng-deep .p-datepicker > div {
+  width: 200px; /* Ajusta este valor para controlar el ancho del calendario */
+  font-size: 0.8rem; /* Reduce el tamaño de la fuente para todo el contenido */
+  padding: 0.5rem; /* Reduce el padding interno del calendario */
+}
+
+/* Encabezado del calendario (mes y año) */
+:host ::ng-deep .p-datepicker-header {
+  padding: 0.4rem; /* Reduce el padding del encabezado */
+  font-size: 0.9rem; /* Reduce la fuente del encabezado si es necesario */
+}
+
+/* Días de la semana (Lu, Ma, Mi, etc.) */
+:host ::ng-deep .p-datepicker-header th {
+  padding: 0.3rem; /* Reduce el padding de los días de la semana */
+}
+
+/* Celdas de los días (1, 2, 3, etc.) */
+:host ::ng-deep .p-datepicker-calendar td {
+  padding: 0.2rem; /* Reduce el padding de las celdas de los días */
+}
+
+/* Números de los días */
+:host ::ng-deep .p-datepicker-calendar td > span {
+  width: 1.5rem; /* Ancho de la bolita del día */
+  height: 1.5rem; /* Alto de la bolita del día */
+  font-size: 0.8rem; /* Tamaño de la fuente de los números de los días */
+  line-height: 1.5rem; /* Centra el número verticalmente */
+}
+
+/* Pie de página (si usas botones de hoy/limpiar) */
+:host ::ng-deep .p-datepicker-buttonbar {
+  padding: 0.5rem;
+}
+
+/* Si usas los selectores de mes/año desplegables (dropdowns) */
+:host ::ng-deep .p-monthpicker .p-monthpicker-month,
+:host ::ng-deep .p-yearpicker .p-yearpicker-year {
+  font-size: 0.8rem;
+  padding: 0.3rem;
 }

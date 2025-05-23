@@ -8,6 +8,7 @@ import { ViewComponent} from './citas/view/view.component';
 import { loginComponent } from './user/login/login.component';
 import { registerComponent } from './user/register/register.component';
 import { CreateComponent } from './servicios/create/create.component';
+import { ConfiguracionComponent } from './admin/configuracion/configuracion.component';
 
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
@@ -41,9 +42,14 @@ export const routes: Routes = [
       component: CreateComponent,
       canActivate: [AdminGuard] 
     },
+    {
+      path:'admin/configuracion',
+      component: ConfiguracionComponent,
+      canActivate: [AdminGuard]
+    },
 
     {path:'login', component: loginComponent},
     {path:'register', component: registerComponent},
 
-    {path: '**', redirectTo: ''} 
+    {path: '**', redirectTo: '/home'} 
 ];

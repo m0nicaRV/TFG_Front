@@ -3,7 +3,7 @@ import { Events } from '../../models/events';
 import { CommonModule } from '@angular/common';
 import { format, FormatDateOptions } from 'date-fns';
 import { es } from 'date-fns/locale';
-import { CalendarService } from '../calendar.service';
+import { CalendarService } from '../../service/calendar.service';
 import { Router } from '@angular/router';
 import { DialogModule } from 'primeng/dialog';
 import { EditComponent } from '../edit/edit.component';
@@ -21,16 +21,22 @@ export class DayComponent {
 
   day!: any;
 
-  constructor(private calendarService: CalendarService, public router: Router) {
+  constructor(public calendarService: CalendarService, public router: Router) {
     this.day = new Date();
    
 
   }
 
-  eliminarEvento(event: Events) {
-    this.events = this.events.filter((e: any) => e.id !== event);
+  eliminarEvento(event: any) {
+    console.log("evento a eliminar",event);
+   if(event.extendedProperties && event.extendedProperties.private.cita_id >0){
+        this.calendarService.eliminarCita(event.extendedProperties.private.cita_id).subscribe(
+          (response) => {
+            console.log('Cita eliminada:', response);
+          } )
+    }
   
-    this.calendarService.deleteEvent(event).subscribe(
+    this.calendarService.deleteEvent(event.id).subscribe(
       (response) => {
         console.log('Evento eliminado:', response);
       }
@@ -38,7 +44,6 @@ export class DayComponent {
   }
 
   editarEvento() {
-    console.log(this.editar);
     this.editar=!this.editar;
   }
 

@@ -1,1 +1,44 @@
-<p>configuracion works!</p>
+<form (ngSubmit)="onSubmit()" [formGroup]="configuracionForm" class="p-fluid">
+  <div class="p-fluid p-formgrid grid">
+
+    <div class="field col-12 md:col-6">
+      <label for="url_host">URL Host</label>
+      <input pInputText id="url_host" type="text" name="url_host" formControlName="url_host" />
+    </div>
+
+    <div class="field col-12 md:col-6">
+      <label for="titulo">Título</label>
+      <input pInputText id="titulo" type="text" name="titulo" formControlName="titulo" />
+    </div>
+
+    <div class="field col-12">
+      <label for="direccion">Dirección</label>
+      <textarea pInputTextarea id="direccion" name="direccion" rows="3" formControlName="direccion"></textarea>
+    </div>
+
+    <div class="field col-12 md:col-6">
+      <label for="telefono">Teléfono</label>
+      <input pInputText id="telefono" type="tel" name="telefono" formControlName="telefono" />
+
+    <div class="field col-12 md:col-6">
+      <label for="email">Email</label>
+      <input pInputText id="email" type="email" name="email" formControlName="email" />
+    </div>
+
+    <div class="field col-12 md:col-6">
+      <label for="instagram">Instagram URL</label>
+      <input pInputText id="instagram" type="url" name="instagram" formControlName="instagram" />
+    </div>
+
+    <div class="field col-12 md:col-6">
+      <label for="Facebook">Facebook</label>
+      <input pInputText id="Facebook" type="text" name="Facebook" formControlName="Facebook" />
+    </div>
+
+  </div>
+
+  <div class="p-mt-4" style="text-align: right;">
+    <p-button type="submit" label="Guardar Cambios" icon="pi pi-save"></p-button>
+  </div>
+  </div>
+</form>

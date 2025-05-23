@@ -21,6 +21,7 @@
       [header]="dia.fecha.toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })"
       [style]="{width: '90vw', maxWidth: '600px'}"
       appendTo="body"
+      (onHide)="toggleDia(dia, false)"
       styleClass="event-details-dialog"
        [ngClass]="{'visible absolute' : dia.visible, 'hidden': !dia.visible}"
     >
@@ -35,6 +36,7 @@
             icon="pi pi-times"
             (click)="toggleDia(dia, false)"
             label="Cerrar"
+            (onHide)="toggleDia(dia, false)"
             class="p-button-text dialog-close-button"
           ></button>
         </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'; 
 import { FormArray, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AutoCompleteModule } from 'primeng/autocomplete';
@@ -8,12 +8,12 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { DatePickerModule } from 'primeng/datepicker';
-import { ServicioService } from '../../servicios/servicio.service';
+import { ServicioService } from '../../service/servicio.service';
 import { Servicio } from '../../models/servicio';
 import { formatDate } from '@angular/common';
-import { CitaService } from '../cita.service';
+import { CitaService } from '../../service/cita.service';
 import { Router } from '@angular/router';
-import { AuthStateService } from '../../shared/auth-state.service';
+import { AuthStateService } from '../../service/auth-state.service';
 import { dateValidator } from '../../validators/date';
 
 
@@ -34,7 +34,7 @@ export class PedirComponent {
   forms!: FormGroup;
   formsTime!: FormGroup;
 
-  constructor(public authstate: AuthStateService,private router: Router, private fb: FormBuilder , private servicioService: ServicioService, private citaService: CitaService) {
+  constructor(public authstate: AuthStateService, private router : Router, private fb: FormBuilder , private servicioService: ServicioService, private citaService: CitaService) {
    
   }
 

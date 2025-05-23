@@ -5,8 +5,10 @@ import { DatePicker } from 'primeng/datepicker';
 import { FloatLabel } from 'primeng/floatlabel';
 import { CommonModule } from '@angular/common';
 import { DayComponent } from '../day/day.component';
-import { CalendarService } from '../calendar.service';
+import { CalendarService } from '../../service/calendar.service';
 import { dateValidator } from '../../validators/date';
+import { format } from 'date-fns';
+import { th } from 'date-fns/locale';
 
 @Component({
   selector: 'app-edit',
@@ -20,8 +22,8 @@ export class EditComponent {
 
   eventForm!: FormGroup;
   constructor(
-    private calendarService: CalendarService,
-    private formBuilder: FormBuilder,
+    public calendarService: CalendarService,
+    public formBuilder: FormBuilder,
   ) {
     this.eventForm = new FormGroup({
       summary: new FormControl('', [Validators.required]),
@@ -45,12 +47,19 @@ export class EditComponent {
         start: new Date(event.start.dateTime) ,
         end: new Date(event.end.dateTime),
       });
-      this.citaId = event.extendedProperties.private.citaId;
-    })
+          if(event.extendedProperties){
+              this.citaId = event.extendedProperties.private.cita_id;
+          }else{
+            this.citaId = 0;
+          }
+          
+    });
+    
   }
   
 
   EditCalendarEvent() {
+    console.log('HOLAAAAAAAAAAAAAA');
     const dateValue: Date = this.eventForm.get('date')?.value;
     const startTimeString: string = this.eventForm.get('start')?.value;
     const endTimeString: string = this.eventForm.get('end')?.value;
@@ -72,13 +81,30 @@ export class EditComponent {
         dateTime: endDateTime,
         timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       },
+      extendedProperties: {
+        private: {
+          cita_id: this.citaId,
+        },
+      },
     };
-    if(this.citaId !==0){
-
-    
-
+    if(this.citaId > 0){
+       const eventApi = {
+          fecha_inicio: format(startDateTime, 'yyyy-MM-dd HH:mm:ss'),
+          fecha_fin: format(endDateTime, 'yyyy-MM-dd HH:mm:ss'),
+      }
+      this.calendarService.aceptEvent(this.citaId, eventApi).subscribe(
+        (response) => {
+            console.log('Evento Editado en la apii:', response);
+            this.editEventGoogle(event);
+        },
+        (error) => {
+           console.error('Error al aceptar el evento:', error);
+        });
     }
+    this.editEventGoogle(event);
+  }
 
+  editEventGoogle(event: any) { 
     this.calendarService.updateEvent(this.eventId,event).subscribe(
       (response) => {
         console.log('Evento creado:', response);
@@ -87,8 +113,6 @@ export class EditComponent {
         console.error('Error al crear el evento:', error);
       }
     );
-
-
   }
 
 }

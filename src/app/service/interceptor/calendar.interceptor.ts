@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 import { HttpErrorResponse,HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpHeaders } from "@angular/common/http";
 import { Observable,catchError, throwError } from "rxjs";
-import { CalendarService } from "./calendar.service";
+import { CalendarService } from "../calendar.service";
 import { Router } from "@angular/router";
 import { HttpContextToken } from '@angular/common/http';
-import { IGNORE_AUTH_INTERCEPTOR } from "../environments/environments";
+import { IGNORE_AUTH_INTERCEPTOR } from '../../environments/environments';
 
 @Injectable()
 

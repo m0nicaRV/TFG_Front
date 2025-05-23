@@ -22,6 +22,7 @@
                             @if (isAdmin) {
                                 <li class="app-header-user-menu-item"><a [routerLink]="'/admin/calendar'">Calendario</a></li>
                                 <li class="app-header-user-menu-item"><a [routerLink]="'servicios/create'">Crear</a></li>
+                                <li class="app-header-user-menu-item"><a [routerLink]="'/admin/configuracion'">Configuracion</a></li>
                             } @else {
                                 <li class="app-header-user-menu-item"><a [routerLink]="'/citas'">Mis citas</a></li>
                                 <li class="app-header-user-menu-item"><a [routerLink]="'/citas/pedir'">Pedir cita</a></li>
